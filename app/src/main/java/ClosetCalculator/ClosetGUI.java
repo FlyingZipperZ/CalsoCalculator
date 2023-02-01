@@ -1,0 +1,223 @@
+package ClosetCalculator;
+
+import ClosetCalculator.Panels.*;
+import ClosetCalculator.Frames.ConverterFrame;
+import ClosetCalculator.Frames.LegendFrame;
+
+import javax.swing.*;
+import java.awt.*;
+
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Objects;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+
+import static ClosetCalculator.Panels.InputButtons.*;
+import static ClosetCalculator.Panels.InputsLabelTxt.numPiecesTxt;
+import static ClosetCalculator.Panels.InputsLabelTxt.typeTxt;
+import static ClosetCalculator.Panels.TopButtons.*;
+import static ClosetCalculator.Panels.BottomPanel.calculate;
+
+public class ClosetGUI extends JFrame {
+    public ClosetGUI() {
+        String[] header = {"No. Pieces","Width","Height", "Depth", "Type", "No. Rods", "No. Shel",
+                "Shel Dep", "Client", "Notes", "Color"};
+
+        String[] defaultData1 = {"7","","90 1/2", "15 7/8", "u", "", "",
+                "", "Left/Vernieri", "CNC", "White"};
+
+        String[] defaultData2 = {"3","","80 1/2", "15 7/8", "u", "", "",
+                "", "Right/Vernieri", "CNC", "White"};
+
+        String[] defaultData3 = {"1","65 7/8","", "15 7/8", "t", "", "",
+                "", "Right/Vernieri", "", "White"};
+
+        String[] defaultData4 = {"1","40 15/16","", "12", "s", "1", "",
+                "", "Right/Vernieri", "", "White"};
+
+        String[] defaultData5 = {"1","24","", "15 7/8", "fx23", "", "",
+                "", "Master/Vernieri", "", "White"};
+
+        String[] defaultData6 = {"1","24","", "15 7/8", "kar23", "", "",
+                "", "Master/Vernieri", "", "White"};
+
+        String[] defaultData7 = {"2","18","7 1/2", "14", "ds23", "", "",
+                "", "Test/Vernieri", "", "White"};
+
+        String[] defaultData8 = {"2","18","7 1/2", "14", "ds23", "", "",
+                "", "Test/Vernieri", "", "White"};
+
+        JTable jTable = new JTable();
+        DefaultTableModel dtm = new DefaultTableModel(0, 0);
+        dtm.setColumnIdentifiers(header);
+        jTable.setModel(dtm);
+        dtm.addRow(defaultData1);
+        dtm.addRow(defaultData2);
+        dtm.addRow(defaultData3);
+        dtm.addRow(defaultData4);
+        dtm.addRow(defaultData5);
+//        dtm.addRow(defaultData6);
+//        dtm.addRow(defaultData7);
+        jTable.getTableHeader().setOpaque(false);
+        jTable.getTableHeader().setBackground(Color.ORANGE);
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+
+        jTable.getColumnModel().getColumn(0).setPreferredWidth(40);
+        jTable.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
+        jTable.getColumnModel().getColumn(1).setPreferredWidth(40);
+        jTable.getColumnModel().getColumn(2).setPreferredWidth(40);
+        jTable.getColumnModel().getColumn(3).setPreferredWidth(40);
+        jTable.getColumnModel().getColumn(4).setPreferredWidth(20);
+        jTable.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
+        jTable.getColumnModel().getColumn(5).setPreferredWidth(30);
+        jTable.getColumnModel().getColumn(6).setPreferredWidth(30);
+        jTable.getColumnModel().getColumn(7).setPreferredWidth(30);
+        jTable.getColumnModel().getColumn(8).setPreferredWidth(100);
+        jTable.getColumnModel().getColumn(9).setPreferredWidth(100);
+        jTable.getColumnModel().getColumn(10).setPreferredWidth(100);
+
+        // Main Panel the houses everything
+        JPanel mainPanel = new JPanel(new GridBagLayout());
+        setMinimumSize(new Dimension(1200, 825));
+        JLabel topLabel = new JLabel("Closet Calculator");
+        topLabel.setFont(new Font("Droid Sans Mono", Font.PLAIN, 20));
+
+        // Main Constraints that move everything around
+        GridBagConstraints mainConstraints = new GridBagConstraints();
+        mainConstraints.anchor = GridBagConstraints.CENTER;
+        mainConstraints.insets = new Insets(10, 10, 10, 10);
+        mainConstraints.gridx = 0;
+        mainConstraints.gridy = 0;
+        mainPanel.add(topLabel, mainConstraints);
+
+        // create a new panel with GridBagLayout manager
+        mainConstraints.gridx = 0;
+        mainConstraints.gridy = 1;
+        mainPanel.add(InputPanel.createInputPanel(), mainConstraints);
+
+        // Calculate, legend and file director
+        mainConstraints.gridx = 1;
+        mainConstraints.gridy = 0;
+        mainPanel.add(TopButtons.createTopPanel(), mainConstraints);
+
+        mainConstraints.gridx = 1;
+        mainConstraints.gridy = 1;
+        mainConstraints.insets = new Insets(600,10,10,10);
+        mainPanel.add(BottomPanel.createCalculateButton(), mainConstraints);
+
+
+        // JTable add
+        JScrollPane js = new JScrollPane(jTable);
+        js.setPreferredSize(new Dimension(800,600));
+        mainConstraints.gridx = 1;
+        mainConstraints.gridy = 0;
+        mainConstraints.gridheight = 4;
+        mainConstraints.insets = new Insets(10,10,10,10);
+        mainPanel.add(js, mainConstraints);
+
+        // add the panel to this frame
+        add(mainPanel);
+        setTitle("Closet Calculator");
+
+        pack();
+        setLocationRelativeTo(null);
+
+        ADD.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String type = typeTxt.getText().trim().toLowerCase();
+                if(numPiecesTxt.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Number of pieces is empty");
+                } else if(typeTxt.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No Type detected");
+                } else if(Objects.equals(type, "u") ||
+                        Objects.equals(type, "s") ||
+                        Objects.equals(type, "r") ||
+                        Objects.equals(type, "b") ||
+                        Objects.equals(type, "t") ||
+                        Objects.equals(type, "d") ||
+                        Objects.equals(type, "d32") ||
+                        Objects.equals(type, "ds") ||
+                        Objects.equals(type, "ds32") ||
+                        Objects.equals(type, "fx23") ||
+                        Objects.equals(type, "fx24") ||
+                        Objects.equals(type, "kar23") ||
+                        Objects.equals(type, "kar24")) {
+                    InputsLabelTxt.addToTable(jTable, dtm);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid Type");
+                }
+            }
+        });
+
+        DELETE.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(jTable.getSelectedRow() != -1) {
+                    // remove selected row from the model
+                    dtm.removeRow(jTable.getSelectedRow());
+                    JOptionPane.showMessageDialog(null, "Selected row deleted successfully");
+                }
+            }
+        });
+
+        clear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                while(dtm.getRowCount() > 0)
+                {
+                    dtm.removeRow(0);
+                }
+            }
+        });
+
+        calculate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CalculateClosets.calculate(dtm);
+            }
+        });
+
+        legend.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LegendFrame legendFrame = new LegendFrame();
+            }
+        });
+
+        codes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConverterFrame converterFrame = new ConverterFrame();
+            }
+        });
+    }
+
+//    public static void main(String[] args) {
+//        // set look and feel to the system look and feel
+//        try {
+//            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//
+//        SwingUtilities.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                new ClosetGUI().setVisible(true);
+//            }
+//        });
+//    }
+}
