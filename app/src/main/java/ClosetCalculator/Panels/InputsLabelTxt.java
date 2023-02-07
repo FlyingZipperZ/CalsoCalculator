@@ -92,12 +92,17 @@ public class InputsLabelTxt {
                     roomTxt.getText().trim() + "/" + clientTxt.getText().trim(),
                     notesTxt.getText().trim(), colorTxt.getText().trim()}
             );
+
+            // Add an unseen panel that holds if that particular cell has a bottom or not
+
             numPiecesTxt.setText(null);
             widthTxt.setText(null);
             heightTxt.setText(null);
+            typeTxt.setText(null);
             rodsTxt.setText(null);
             numShelvesTxt.setText(null);
             shelveDepthTxt.setText(null);
+            notesTxt.setText(null);
         }
     }
 }

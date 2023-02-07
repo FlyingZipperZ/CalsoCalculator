@@ -84,23 +84,23 @@ public class DrawerDS23 {
                 drawers.get(4), drawers.get(8), drawers.get(9)));
 
         // Sides
-        ArrayList<String> sides1 = new ArrayList<>(List.of(
+        ArrayList<String> sides12 = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 2),
                 "5", "H","x", SubtractFromString.sub8th(drawers.get(3)),
-                "W", "", "", "", "Drawer F&B",
+                "W", "", "", "", "Drawer Sides",
                 drawers.get(4), drawers.get(8), drawers.get(9)));
 
-        ArrayList<String> sides234 = new ArrayList<>(List.of(
+        ArrayList<String> sides34 = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 6),
                 "6 1/4", "H","x", SubtractFromString.sub8th(drawers.get(3)),
-                "W", "", "", "", "Drawer F&B",
+                "W", "", "", "", "Drawer Sides",
                 drawers.get(4), drawers.get(8), drawers.get(9)));
 
-        ArrayList<String> sides5 = new ArrayList<>(List.of(
-                String.valueOf(partMultiplier * 2),
-                "7 1/2", "H","x", SubtractFromString.sub8th(drawers.get(3)),
-                "W", "", "", "", "Drawer F&B",
-                drawers.get(4), drawers.get(8), drawers.get(9)));
+        // ArrayList<String> sides5 = new ArrayList<>(List.of(
+        //         String.valueOf(partMultiplier * 2),
+        //         "7 1/2", "H","x", SubtractFromString.sub8th(drawers.get(3)),
+        //         "W", "", "", "", "Drawer Sides",
+        //         drawers.get(4), drawers.get(8), drawers.get(9)));
 
         // Bottoms
         ArrayList<String> bottomDrawer = new ArrayList<>(List.of(
@@ -120,9 +120,9 @@ public class DrawerDS23 {
         drawerUnit.add(frontAndBack1);
         drawerUnit.add(frontAndBack234);
         drawerUnit.add(frontAndBack5);
-        drawerUnit.add(sides1);
-        drawerUnit.add(sides234);
-        drawerUnit.add(sides5);
+        drawerUnit.add(sides12);
+        drawerUnit.add(sides34);
+        // drawerUnit.add(sides5);
         drawerUnit.add(bottomDrawer);
 
         return drawerUnit;
