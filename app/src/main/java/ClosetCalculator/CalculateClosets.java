@@ -1,6 +1,7 @@
 package ClosetCalculator;
 
 import ClosetCalculator.Calculations.*;
+import ClosetCalculator.Frames.SaveFile;
 import ClosetCalculator.Panels.InputsLabelTxt;
 import ExcelOut.ExcelOutput;
 
@@ -8,6 +9,12 @@ import javax.swing.table.DefaultTableModel;
 import java.util.*;
 
 public class CalculateClosets {
+
+    /**
+     * Takes the default table model with all the data and checks the string value in the type section of the table
+     * in order to run the correct calculation for use
+     * @param dtm table from main panel
+     */
     public static void calculate(DefaultTableModel dtm) {
         System.out.println("Closets Are being calculated\n");
         Vector<Vector> data = dtm.getDataVector();
@@ -24,8 +31,6 @@ public class CalculateClosets {
                     list.addAll(Shelves.calcShelves(datum));
                     if (!datum.get(5).equals("")) {
                         rodsList.addAll(Shelves.calcRods(datum));
-                        System.out.println("Did this run?");
-                        System.out.println(rodsList.get(0));
                     }
                     break;
                 case "t":
@@ -52,6 +57,7 @@ public class CalculateClosets {
             }
         }
 
+        // Sorts list of parts by their width
         list.sort(new Comparator<ArrayList<String>>() {
             @Override
             public int compare(ArrayList<String> o1, ArrayList<String> o2) {
@@ -59,6 +65,7 @@ public class CalculateClosets {
             }
         }.reversed());
 
+        // Sorts drawerList by height
         drawerList.sort(new Comparator<ArrayList<String>>() {
             @Override
             public int compare(ArrayList<String> o1, ArrayList<String> o2) {
@@ -66,6 +73,7 @@ public class CalculateClosets {
             }
         }.reversed());
 
+        // Sorts drawerList by width
         drawerList.sort(new Comparator<ArrayList<String>>() {
             @Override
             public int compare(ArrayList<String> o1, ArrayList<String> o2) {
@@ -73,30 +81,15 @@ public class CalculateClosets {
             }
         }.reversed());
 
-        System.out.println("*************** List: ******************");
-        for(List<String> l1 : list) {
-            System.out.println(Arrays.toString(l1.toArray()));
-        }
-
+        // Sorts drawerList by width
         SortFunctions.sortReversed(1, drawerList);
 
-        System.out.println("\n*************** Drawers List: ******************");
-        for(List<String> dl1 : drawerList) {
-            System.out.println(Arrays.toString(dl1.toArray()));
-        }
-
+        // Sorts drawerList by height
         SortFunctions.sortReversed(7, rodsList);
 
-        System.out.println("\n*************** Rods List: ******************");
-        for(List<String> r : rodsList) {
-            System.out.println(Arrays.toString(r.toArray()));
-        }
-
+        // Calls ExcelOutput to create the Excel file
         ExcelOutput.createExcel(list, drawerList, rodsList);
 
         System.out.println("\nList Run Successful");
-
-//        System.out.println("Save File Location: " + SaveFile.createSavePopUp());
-
     }
 }

@@ -17,14 +17,11 @@ import java.util.Objects;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import static ClosetCalculator.Panels.InputButtons.*;
-import static ClosetCalculator.Panels.InputsLabelTxt.numPiecesTxt;
-import static ClosetCalculator.Panels.InputsLabelTxt.typeTxt;
+import static ClosetCalculator.Panels.InputsLabelTxt.*;
 import static ClosetCalculator.Panels.TopButtons.*;
 import static ClosetCalculator.Panels.BottomPanel.calculate;
 
@@ -57,15 +54,17 @@ public class ClosetGUI extends JFrame {
         String[] defaultData8 = {"2","18","7 1/2", "14", "ds23", "", "",
                 "", "Test/Vernieri", "", "White"};
 
+
+        // Create JTable to allow data to flow through the app
         JTable jTable = new JTable();
         DefaultTableModel dtm = new DefaultTableModel(0, 0);
         dtm.setColumnIdentifiers(header);
         jTable.setModel(dtm);
-        dtm.addRow(defaultData1);
-        dtm.addRow(defaultData2);
-        dtm.addRow(defaultData3);
-        dtm.addRow(defaultData4);
-        dtm.addRow(defaultData5);
+//        dtm.addRow(defaultData1);
+//        dtm.addRow(defaultData2);
+//        dtm.addRow(defaultData3);
+//        dtm.addRow(defaultData4);
+//        dtm.addRow(defaultData5);
 //        dtm.addRow(defaultData6);
 //        dtm.addRow(defaultData7);
         jTable.getTableHeader().setOpaque(false);
@@ -138,24 +137,47 @@ public class ClosetGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String type = typeTxt.getText().trim().toLowerCase();
-                if(numPiecesTxt.getText().isEmpty()) {
+                if (numPiecesTxt.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Number of pieces is empty");
-                } else if(typeTxt.getText().isEmpty()) {
+                } else if (typeTxt.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No Type detected");
-                } else if(Objects.equals(type, "u") ||
-                        Objects.equals(type, "s") ||
-                        Objects.equals(type, "r") ||
-                        Objects.equals(type, "b") ||
-                        Objects.equals(type, "t") ||
-                        Objects.equals(type, "d") ||
-                        Objects.equals(type, "d32") ||
-                        Objects.equals(type, "ds") ||
-                        Objects.equals(type, "ds32") ||
-                        Objects.equals(type, "fx23") ||
+                } else if (Objects.equals(type, "u")) {
+                    if (heightTxt.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Height is empty");
+                    } else if (depthTxt.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Depth is empty");
+                    } else {
+                        InputsLabelTxt.addToTable(jTable, dtm);
+                    }
+                } else if (Objects.equals(type, "s") || Objects.equals(type, "t")) {
+                    if (widthTxt.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Width is empty");
+                    } else if (depthTxt.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Depth is empty");
+                    } else {
+                        InputsLabelTxt.addToTable(jTable, dtm);
+                    }
+                } else if (Objects.equals(type, "ds23") || Objects.equals(type, "ds24")) {
+                    if (widthTxt.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Width is empty");
+                    } else if (heightTxt.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Height is empty");
+                    }else if (depthTxt.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Depth is empty");
+                    } else {
+                        InputsLabelTxt.addToTable(jTable, dtm);
+                    }
+                } else if (Objects.equals(type, "fx23") ||
                         Objects.equals(type, "fx24") ||
                         Objects.equals(type, "kar23") ||
                         Objects.equals(type, "kar24")) {
-                    InputsLabelTxt.addToTable(jTable, dtm);
+                    if (widthTxt.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Width is empty");
+                    } else if (depthTxt.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Depth is empty");
+                    } else {
+                        InputsLabelTxt.addToTable(jTable, dtm);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid Type");
                 }
@@ -186,38 +208,27 @@ public class ClosetGUI extends JFrame {
         calculate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CalculateClosets.calculate(dtm);
+                int count= jTable.getModel().getRowCount();
+                if (count !=0) {
+                    CalculateClosets.calculate(dtm);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Table is empty");
+                }
             }
         });
 
         legend.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                LegendFrame legendFrame = new LegendFrame();
+                new LegendFrame();
             }
         });
 
         codes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ConverterFrame converterFrame = new ConverterFrame();
+                new ConverterFrame();
             }
         });
     }
-
-//    public static void main(String[] args) {
-//        // set look and feel to the system look and feel
-//        try {
-//            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-//
-//        SwingUtilities.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                new ClosetGUI().setVisible(true);
-//            }
-//        });
-//    }
 }

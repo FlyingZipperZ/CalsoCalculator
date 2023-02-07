@@ -9,6 +9,8 @@ import org.apache.poi.xssf.usermodel.*;
 import java.util.Objects;
 
 public class ColorRow {
+
+    // Gets color from colorTxt and puts it at the bottom of the file
     public static void createRow(XSSFWorkbook workbook, XSSFSheet sheet, int rowNumber) {
         // Create excel style
         XSSFCellStyle rowStyle = workbook.createCellStyle();

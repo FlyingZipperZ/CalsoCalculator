@@ -4,9 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Radios {
-
-    public static JRadioButton angledYesRadio = new JRadioButton();
-    public static JRadioButton angledNoRadio = new JRadioButton();
     public static JRadioButton topYesRadio = new JRadioButton();
     public static JRadioButton topNoRadio = new JRadioButton();
     public static JRadioButton bottomYesRadio = new JRadioButton();
@@ -18,23 +15,6 @@ public class Radios {
         // GridBagConstraints
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.CENTER;
-
-
-        /**
-         * Angled Panels
-         */
-        JLabel angleLabel = new JLabel("Angled Panels?: ");
-
-        // Bottoms Radio Button 1 Yes
-
-        angledYesRadio.setText("Yes");
-
-        // Bottoms Radio Button 2 No
-
-        angledNoRadio.setText("No");
-
-        angledNoRadio.setSelected(true);
-
 
         /**
         Tops
@@ -72,11 +52,6 @@ public class Radios {
          * Groups
          */
         // Group radio buttons
-        ButtonGroup labelGroup = new ButtonGroup();
-        labelGroup.add(angledYesRadio);
-        labelGroup.add(angledNoRadio);
-
-        // Group radio buttons
         ButtonGroup topsGroup = new ButtonGroup();
         topsGroup.add(topYesRadio);
         topsGroup.add(topNoRadio);
@@ -90,13 +65,6 @@ public class Radios {
 
         gbc.gridx = 0;
         gbc.gridy = 0;
-        panel.add(angleLabel, gbc);
-
-        gbc.gridx++;
-        panel.add(angledYesRadio, gbc);
-
-        gbc.gridx++;
-        panel.add(angledNoRadio, gbc);
 
         gbc.gridx = 0;
         gbc.gridy++;

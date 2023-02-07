@@ -1,5 +1,6 @@
 package ExcelOut;
 
+import ClosetCalculator.Frames.SaveFile;
 import org.apache.poi.ss.usermodel.CellReferenceType;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFFont;
@@ -11,6 +12,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ExcelOutput {
+
+    // Creates an Excel from the data input by the user
     public static void createExcel(ArrayList<ArrayList<String>> list, ArrayList<ArrayList<String>> drawers, ArrayList<ArrayList<String>> rods) {
         XSSFWorkbook workbook = new XSSFWorkbook();
 
@@ -57,9 +60,13 @@ public class ExcelOutput {
 
         ColorRow.createRow(workbook, sheet, rowNumber);
 
+        String location = SaveFile.createSavePopUp();
+
+        System.out.println(location);
+
         // Output file
         try {
-            FileOutputStream out =  new FileOutputStream("Test.xlsx");
+            FileOutputStream out =  new FileOutputStream(location + ".xlsx");
             workbook.write(out);
             out.close();
             System.out.println("Excel with formula cells written successfully");

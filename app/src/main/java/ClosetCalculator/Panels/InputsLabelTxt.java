@@ -11,18 +11,19 @@ public class InputsLabelTxt {
     // TextField
     static JTextField clientTxt = new JTextField(15);
     public static JTextField colorTxt = new JTextField(15);
-    static JTextField colorRodTxt = new JTextField(15);
+    public static JTextField colorRodTxt = new JTextField(15);
     static JTextField roomTxt = new JTextField(15);
     public static JTextField rodModTxt = new JTextField(column);
     public static JTextField numPiecesTxt = new JTextField(column);
-    static JTextField widthTxt = new JTextField(column);
-    static JTextField heightTxt = new JTextField(column);
-    static JTextField depthTxt = new JTextField(column);
+    public static JTextField widthTxt = new JTextField(column);
+    public static JTextField heightTxt = new JTextField(column);
+    public static JTextField depthTxt = new JTextField(column);
     public static JTextField typeTxt = new JTextField(column);
     public static JTextField rodsTxt = new JTextField(column);
     static JTextField numShelvesTxt = new JTextField(column);
     static JTextField shelveDepthTxt = new JTextField(column);
     static JTextField notesTxt = new JTextField(15);
+
 
     private static void closetInputComponents(GridBagConstraints constraints, JPanel newPanel, JLabel label,
                                               JTextField textField, int xGrid, int yGrid) {

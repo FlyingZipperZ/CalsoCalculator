@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Vector;
 
 import static ClosetCalculator.Calculations.DecimalToFraction.convertDecimalToFraction;
+import static ClosetCalculator.Panels.InputsLabelTxt.colorRodTxt;
+import static ClosetCalculator.Panels.InputsLabelTxt.rodModTxt;
 
 public class Shelves {
     /**
@@ -34,6 +36,16 @@ public class Shelves {
                 "", "", "",
                 shelvesList.get(4), shelvesList.get(8), shelvesList.get(9))));
 
+        if(Radios.topYesRadio.isSelected()) {
+            // ArrayList that holds bottom data if needed
+            ArrayList<String> bottomList = new ArrayList<>(List.of(
+                    shelvesList.get(0),
+                    shelvesList.get(3), "D","x", shelvesList.get(1), "W", "",
+                    "", "", "",
+                    "t", shelvesList.get(8), shelvesList.get(9)));
+            newList.add(bottomList);
+        }
+
         if(Radios.bottomYesRadio.isSelected()) {
             // ArrayList that holds bottom data if needed
             ArrayList<String> bottomList = new ArrayList<>(List.of(
@@ -54,13 +66,19 @@ public class Shelves {
         // ArrayList that adds all elements and gets pushed to the master list
         ArrayList<ArrayList<String>> newList = new ArrayList<>();
 
-        double in = FractionToDecimal.convertFractionToDecimal(rodsList.get(1)) -
-                FractionToDecimal.convertFractionToDecimalRods(InputsLabelTxt.rodModTxt.getText());
+        double in;
 
+        if (rodModTxt.getText().isEmpty()) {
+            in = FractionToDecimal.convertFractionToDecimal(rodsList.get(1)) -
+                    FractionToDecimal.convertFractionToDecimalRods("3/16");
+        } else {
+            in = FractionToDecimal.convertFractionToDecimal(rodsList.get(1)) -
+                    FractionToDecimal.convertFractionToDecimalRods(InputsLabelTxt.rodModTxt.getText());
+        }
 
         newList.add(new ArrayList<>(List.of(
-                rodsList.get(0),
-                "", "", "", "",
+                rodsList.get(5),
+                colorRodTxt.getText().trim(), "", "", "",
                 "", "", DecimalToFraction.convertDecimalToFraction(in),"W", "",
                 "r", rodsList.get(8), rodsList.get(9))));
 
