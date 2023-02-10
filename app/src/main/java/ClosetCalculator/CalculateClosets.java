@@ -6,6 +6,8 @@ import ExcelOut.ExcelOutput;
 import javax.swing.table.DefaultTableModel;
 import java.util.*;
 
+import static ClosetCalculator.Calculations.ClosetParts.Filler.createFiller;
+import static ClosetCalculator.Calculations.ClosetParts.Rods.calcRods;
 import static ClosetCalculator.Calculations.DrawerUnits.DrawerDS23.createDS23;
 import static ClosetCalculator.Calculations.DrawerUnits.DrawerFX23.createFX23;
 import static ClosetCalculator.Calculations.DrawerUnits.DrawerFX24.createFX24;
@@ -40,7 +42,7 @@ public class CalculateClosets {
                 case "s":
                     list.addAll(Shelves.calcShelves(datum));
                     if (!datum.get(5).equals("")) {
-                        rodsList.addAll(Shelves.calcRods(datum));
+                        rodsList.addAll(calcRods(datum));
                     }
                     break;
                 case "t":
@@ -65,18 +67,16 @@ public class CalculateClosets {
                     drawerList.addAll(createKar24(datum));
                     break;
                 case "f":
-
+                    filler.add(createFiller(datum));
+                    break;
+                case "r":
+                    rodsList.addAll(calcRods(datum));
                     break;
             }
         }
 
         // Sorts list of parts by their width
-        list.sort(new Comparator<ArrayList<String>>() {
-            @Override
-            public int compare(ArrayList<String> o1, ArrayList<String> o2) {
-                return o1.get(1).compareTo(o2.get(1));
-            }
-        }.reversed());
+        sortReversed(1, list);
 
         if (!drawerListds23.isEmpty()) {
             drawerList.addAll(createDS23(drawerListds23));
@@ -96,12 +96,8 @@ public class CalculateClosets {
         // Sorts drawerList by height
         sortReversed(7, rodsList);
 
-//        for (int i = 0; i < drawerList.size(); i++) {
-//            System.out.println(drawerList.get(i));
-//        }
-
         // Calls ExcelOutput to create the Excel file
-        ExcelOutput.createExcel(list, drawerList, rodsList);
+        ExcelOutput.createExcel(list, drawerList, rodsList, filler);
 
         System.out.println("\nList Run Successful");
     }

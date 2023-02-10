@@ -14,7 +14,8 @@ import java.util.ArrayList;
 public class ExcelOutput {
 
     // Creates an Excel from the data input by the user
-    public static void createExcel(ArrayList<ArrayList<String>> list, ArrayList<ArrayList<String>> drawers, ArrayList<ArrayList<String>> rods) {
+    public static void createExcel(ArrayList<ArrayList<String>> list, ArrayList<ArrayList<String>> drawers,
+                                   ArrayList<ArrayList<String>> rods, ArrayList<ArrayList<String>> fillers) {
         XSSFWorkbook workbook = new XSSFWorkbook();
 
         XSSFSheet sheet = workbook.createSheet("test");
@@ -48,6 +49,10 @@ public class ExcelOutput {
         }
         for (ArrayList<String> drawer : drawers) {
             DimensionCells.setDrawersRows(workbook, sheet, rowNumber++, drawer);
+        }
+
+        for (ArrayList<String> filler: fillers) {
+            DimensionCells.setFiller(workbook, sheet, rowNumber++, filler);
         }
 
         rowNumber++;

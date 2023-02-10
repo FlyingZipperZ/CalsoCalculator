@@ -115,4 +115,32 @@ public class DimensionCells {
             cells[i].setCellStyle(rowStyle);
         }
     }
+    public static void setFiller(XSSFWorkbook workbook, XSSFSheet sheet, int rowNumber, ArrayList<String> filler) {
+        // Create excel style
+        XSSFCellStyle rowStyle = workbook.createCellStyle();
+
+        // Creates a font for the excel
+        XSSFFont font = workbook.createFont();
+        rowStyle.setFont(font);
+
+        rowStyle.setAlignment(HorizontalAlignment.CENTER);
+
+        DataFormat format = workbook.createDataFormat();
+        rowStyle.setDataFormat(format.getFormat("# ??/??"));
+
+        // Creates cells to be filled
+        XSSFCell[] cells = new XSSFCell[13];
+        XSSFRow rows = sheet.createRow(rowNumber);
+
+        for (int i = 0; i < filler.size(); i++) {
+            cells[i] = rows.createCell(i);
+            if (i == 0 || i == 1 || i == 4) {
+
+                cells[i].setCellValue(FractionToDecimal.convertFractionToDecimal(filler.get(i)));
+            } else if (!Objects.equals(filler.get(i), null)) {
+                cells[i].setCellValue(filler.get(i));
+            }
+            cells[i].setCellStyle(rowStyle);
+        }
+    }
 }
