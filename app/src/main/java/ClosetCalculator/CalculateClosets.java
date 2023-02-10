@@ -1,17 +1,18 @@
 package ClosetCalculator;
 
-import ClosetCalculator.Calculations.*;
+import ClosetCalculator.Calculations.ClosetParts.Shelves;
 import ExcelOut.ExcelOutput;
 
 import javax.swing.table.DefaultTableModel;
 import java.util.*;
 
-import static ClosetCalculator.Calculations.DrawerDS23.createDS23;
-import static ClosetCalculator.Calculations.DrawerFX23.createFX23;
-import static ClosetCalculator.Calculations.DrawerFX24.createFX24;
-import static ClosetCalculator.Calculations.DrawerKar23.createKar23;
-import static ClosetCalculator.Calculations.DrawerKar24.createKar24;
-import static ClosetCalculator.Calculations.UpRight.calcUpRight;
+import static ClosetCalculator.Calculations.DrawerUnits.DrawerDS23.createDS23;
+import static ClosetCalculator.Calculations.DrawerUnits.DrawerFX23.createFX23;
+import static ClosetCalculator.Calculations.DrawerUnits.DrawerFX24.createFX24;
+import static ClosetCalculator.Calculations.DrawerUnits.DrawerKar23.createKar23;
+import static ClosetCalculator.Calculations.DrawerUnits.DrawerKar24.createKar24;
+import static ClosetCalculator.Calculations.ClosetParts.Tops.tops;
+import static ClosetCalculator.Calculations.ClosetParts.UpRight.calcUpRight;
 import static ClosetCalculator.SortFunctions.sortReversed;
 
 public class CalculateClosets {
@@ -29,6 +30,7 @@ public class CalculateClosets {
         ArrayList<ArrayList<String>> drawerListds24 = new ArrayList<>();
         ArrayList<ArrayList<String>> drawerList = new ArrayList<>();
         ArrayList<ArrayList<String>> rodsList = new ArrayList<>();
+        ArrayList<ArrayList<String>> filler = new ArrayList<>();
 
         for (Vector datum : data) {
             switch ((String) datum.get(4)) {
@@ -42,7 +44,7 @@ public class CalculateClosets {
                     }
                     break;
                 case "t":
-                    list.add(Tops.calcUpRight(datum));
+                    list.add(tops(datum));
                     break;
                 case "ds23":
                     drawerListds23.add(new ArrayList<String>(datum.stream().toList()));
@@ -61,6 +63,9 @@ public class CalculateClosets {
                     break;
                 case "kar24":
                     drawerList.addAll(createKar24(datum));
+                    break;
+                case "f":
+
                     break;
             }
         }

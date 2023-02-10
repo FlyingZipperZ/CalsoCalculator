@@ -1,11 +1,14 @@
-package ClosetCalculator.Calculations;
+package ClosetCalculator.Calculations.DrawerUnits;
 
+import ClosetCalculator.Calculations.DecimalToFraction;
+import ClosetCalculator.Calculations.SubtractFromString;
 import ClosetCalculator.SortFunctions;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static ClosetCalculator.Calculations.DecimalToFraction.convertDecimalToFraction;
 import static ClosetCalculator.Calculations.FractionToDecimal.convertFractionToDecimal;
 import static ClosetCalculator.Calculations.SubtractFromString.sub;
 
@@ -172,7 +175,7 @@ public class DrawerDS23 {
             uprights = new ArrayList<>(List.of(String.valueOf(2),
                     "", "", "",
                     sub(depthInput, "0.25"), "D", "x",
-                    DecimalToFraction.convertDecimalToFraction(heightDrawer), "H", "Upright/WH",
+                    convertDecimalToFraction(heightDrawer), "H", "Upright/WH",
                     drawers.get(z).get(0).get(locationType),
                     drawers.get(z).get(0).get(locationClient),
                     drawers.get(z).get(0).get(locationColor)

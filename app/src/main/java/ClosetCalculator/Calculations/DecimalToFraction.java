@@ -1,7 +1,7 @@
 package ClosetCalculator.Calculations;
 
 public class DecimalToFraction {
-    static String convertDecimalToFraction(double x) {
+    public static String convertDecimalToFraction(double x) {
         if (x < 1) {
             if (x < 0) {
                 return "-" + convertDecimalToFraction(-x);

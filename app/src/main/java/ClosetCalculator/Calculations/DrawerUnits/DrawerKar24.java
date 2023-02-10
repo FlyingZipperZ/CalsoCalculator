@@ -1,11 +1,14 @@
-package ClosetCalculator.Calculations;
+package ClosetCalculator.Calculations.DrawerUnits;
+
+import ClosetCalculator.Calculations.AddToString;
+import ClosetCalculator.Calculations.SubtractFromString;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-public class DrawerKar23 {
-    public static ArrayList<ArrayList<String>> createKar23(Vector vector) {
+public class DrawerKar24 {
+    public static ArrayList<ArrayList<String>> createKar24(Vector vector) {
 
         /**
          * Input
@@ -52,26 +55,12 @@ public class DrawerKar23 {
                 drawers.get(4), drawers.get(8), drawers.get(9)));
 
         // Math when weird number
-        String faceWidth = SubtractFromString.sub(drawers.get(1), "0.5");
+        String faceWidth = AddToString.add(drawers.get(1), "0.5");
 
         // Faces
         ArrayList<String> face = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier),
-                faceWidth, "H","x", drawers.get(1), "W", "",
-                "", "", "Face",
-                drawers.get(4), drawers.get(8), drawers.get(9)));
-
-        // Faces
-        ArrayList<String> face23 = new ArrayList<>(List.of(
-                String.valueOf(partMultiplier * 2),
-                faceWidth, "H","x", drawers.get(1), "W", "",
-                "", "", "Face",
-                drawers.get(4), drawers.get(8), drawers.get(9)));
-
-        // Faces
-        ArrayList<String> face45 = new ArrayList<>(List.of(
-                String.valueOf(partMultiplier * 2),
-                faceWidth, "H","x", drawers.get(1), "W", "",
+                faceWidth, "H","x", drawers.get(2), "W", "",
                 "", "", "Face",
                 drawers.get(4), drawers.get(8), drawers.get(9)));
 
@@ -82,19 +71,19 @@ public class DrawerKar23 {
         ArrayList<String> frontAndBack1 = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 2),
                 "5", "H","x", SubtractFromString.sub(drawers.get(1), "4.0625"),
-                "W", "", "", "", "Drawer Sides",
+                "W", "", "", "", "Drawer F&B",
                 drawers.get(4), drawers.get(8), drawers.get(9)));
 
         ArrayList<String> frontAndBack234 = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 4),
                 "6 1/4", "H","x", SubtractFromString.sub(drawers.get(1), "4.0625"),
-                "W", "", "", "", "Drawer Sides",
+                "W", "", "", "", "Drawer F&B",
                 drawers.get(4), drawers.get(8), drawers.get(9)));
 
         ArrayList<String> frontAndBack5 = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 4),
                 "7 1/2", "H","x", SubtractFromString.sub(drawers.get(1), "4.0625"),
-                "W", "", "", "", "Drawer Sides",
+                "W", "", "", "", "Drawer F&B",
                 drawers.get(4), drawers.get(8), drawers.get(9)));
 
         // Sides
@@ -131,8 +120,6 @@ public class DrawerKar23 {
         drawerUnit.add(bottom);
         drawerUnit.add(upright);
         drawerUnit.add(face);
-        drawerUnit.add(face23);
-        drawerUnit.add(face45);
         drawerUnit.add(frontAndBack1);
         drawerUnit.add(frontAndBack234);
         drawerUnit.add(frontAndBack5);

@@ -88,8 +88,8 @@ public class ClosetGUI extends JFrame {
 //        dtm.addRow(defaultData4);
 //        dtm.addRow(defaultData5);
 //        dtm.addRow(defaultData6);
-        dtm.addRow(defaultData7);
-        dtm.addRow(defaultData8);
+//        dtm.addRow(defaultData7);
+//        dtm.addRow(defaultData8);
 //        dtm.addRow(defaultData9);
 //        dtm.addRow(defaultData10);
 //        dtm.addRow(defaultData11);
