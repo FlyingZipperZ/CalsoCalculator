@@ -3,8 +3,9 @@ package ClosetCalculator.Panels;
 import javax.swing.*;
 import java.awt.*;
 
+import static ClosetCalculator.Components.Buttons.clear;
+
 public class BottomPanel {
-    public static final AbstractButton calculate = new JButton("Calculate");
     public static JPanel createCalculateButton() {
         // JPanel
         JPanel panel = new JPanel(new GridBagLayout());
@@ -12,15 +13,9 @@ public class BottomPanel {
         // Constraints
         GridBagConstraints constraints = new GridBagConstraints();
 
-        constraints.insets = new Insets(30, 10, 10, 10);
+        constraints.insets = new Insets(10, 20, 10, 60);
 
-        JButton calc = (JButton)calculate;
-
-        calc.setBackground(Color.CYAN);
-        calc.setOpaque(true);
-        calc.setBorderPainted(false);
-
-        InputButtons.closetButtons(constraints, panel, calc, 0, 0);
+        InputButtons.closetButtons(constraints, panel, (JButton) clear, 0, 0);
 
         return panel;
     }

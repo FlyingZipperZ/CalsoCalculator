@@ -1,17 +1,13 @@
 package ClosetCalculator.Calculations;
 
-import ClosetCalculator.Panels.InputPanel;
-import ClosetCalculator.Panels.InputsLabelTxt;
-import ClosetCalculator.Panels.Radios;
-
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import static ClosetCalculator.Calculations.DecimalToFraction.convertDecimalToFraction;
-import static ClosetCalculator.Panels.InputsLabelTxt.colorRodTxt;
-import static ClosetCalculator.Panels.InputsLabelTxt.rodModTxt;
+import static ClosetCalculator.Components.JtextField.colorRodTxt;
+import static ClosetCalculator.Components.JtextField.rodModTxt;
+import static ClosetCalculator.Components.Radios.bottomYesRadio;
+import static ClosetCalculator.Components.Radios.topYesRadio;
 
 public class Shelves {
     /**
@@ -32,11 +28,11 @@ public class Shelves {
 
         newList.add(new ArrayList<>(List.of(
                 shelvesList.get(0),
-                SubtractFromString.sub8th(shelvesList.get(3)), "D", "x", shelvesList.get(1), "W", "",
+                SubtractFromString.subHalfInch(shelvesList.get(3)), "D", "x", shelvesList.get(1), "W", "",
                 "", "", "",
                 shelvesList.get(4), shelvesList.get(8), shelvesList.get(9))));
 
-        if(Radios.topYesRadio.isSelected()) {
+        if(topYesRadio.isSelected()) {
             // ArrayList that holds bottom data if needed
             ArrayList<String> bottomList = new ArrayList<>(List.of(
                     shelvesList.get(0),
@@ -46,13 +42,13 @@ public class Shelves {
             newList.add(bottomList);
         }
 
-        if(Radios.bottomYesRadio.isSelected()) {
+        if(bottomYesRadio.isSelected()) {
             // ArrayList that holds bottom data if needed
             ArrayList<String> bottomList = new ArrayList<>(List.of(
                     shelvesList.get(0),
                     shelvesList.get(3), "D","x", shelvesList.get(1), "W", "",
                     "", "", "",
-                    "b", shelvesList.get(8), shelvesList.get(9)));
+                    "bot", shelvesList.get(8), shelvesList.get(9)));
             newList.add(bottomList);
         }
 
@@ -73,7 +69,7 @@ public class Shelves {
                     FractionToDecimal.convertFractionToDecimalRods("3/16");
         } else {
             in = FractionToDecimal.convertFractionToDecimal(rodsList.get(1)) -
-                    FractionToDecimal.convertFractionToDecimalRods(InputsLabelTxt.rodModTxt.getText());
+                    FractionToDecimal.convertFractionToDecimalRods(rodModTxt.getText());
         }
 
         newList.add(new ArrayList<>(List.of(

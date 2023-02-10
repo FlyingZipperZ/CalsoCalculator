@@ -100,26 +100,26 @@ public class DrawerFX23 {
         // Sides
         ArrayList<String> sides1 = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 2),
-                "5", "H","x", SubtractFromString.sub8th(drawers.get(3)),
-                "W", "", "", "", "Drawer F&B",
+                "5", "H","x", SubtractFromString.subHalfInch(drawers.get(3)),
+                "W", "", "", "", "Drawer Sides",
                 drawers.get(4), drawers.get(8), drawers.get(9)));
 
         ArrayList<String> sides234 = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 6),
-                "6 1/4", "H","x", SubtractFromString.sub8th(drawers.get(3)),
-                "W", "", "", "", "Drawer F&B",
+                "6 1/4", "H","x", SubtractFromString.subHalfInch(drawers.get(3)),
+                "W", "", "", "", "Drawer Sides",
                 drawers.get(4), drawers.get(8), drawers.get(9)));
 
         ArrayList<String> sides5 = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 2),
-                "7 1/2", "H","x", SubtractFromString.sub8th(drawers.get(3)),
-                "W", "", "", "", "Drawer F&B",
+                "7 1/2", "H","x", SubtractFromString.subHalfInch(drawers.get(3)),
+                "W", "", "", "", "Drawer Sides",
                 drawers.get(4), drawers.get(8), drawers.get(9)));
 
         // Bottoms
         ArrayList<String> bottomDrawer = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 5),  "", "", "",
-                SubtractFromString.sub8th(drawers.get(3)), "D","x",
+                SubtractFromString.subHalfInch(drawers.get(3)), "D","x",
                 SubtractFromString.sub(drawers.get(1), "2.5625"),
                 "W", "Drawer Bottom (1/4')",
                 drawers.get(4), drawers.get(8), drawers.get(9)));

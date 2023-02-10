@@ -20,10 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import static ClosetCalculator.Panels.InputButtons.*;
-import static ClosetCalculator.Panels.InputsLabelTxt.*;
-import static ClosetCalculator.Panels.TopButtons.*;
-import static ClosetCalculator.Panels.BottomPanel.calculate;
+import static ClosetCalculator.Components.Buttons.*;
+import static ClosetCalculator.Components.JtextField.*;
 
 public class ClosetGUI extends JFrame {
     public ClosetGUI() {
@@ -48,10 +46,34 @@ public class ClosetGUI extends JFrame {
         String[] defaultData6 = {"1","24","", "15 7/8", "kar23", "", "",
                 "", "Master/Vernieri", "", "White"};
 
-        String[] defaultData7 = {"2","18","7 1/2", "14", "ds23", "", "",
+        String[] defaultData7 = {"2","24","8 3/4", "16", "ds23", "", "",
                 "", "Test/Vernieri", "", "White"};
 
-        String[] defaultData8 = {"2","18","7 1/2", "14", "ds23", "", "",
+        String[] defaultData8 = {"2","24","7 1/2", "16", "ds23", "", "",
+                "", "Test/Vernieri", "", "White"};
+
+        String[] defaultData9 = {"2","23","6 1/4", "16", "ds23", "", "",
+                "", "Test/Vernieri", "", "White"};
+
+        String[] defaultData10 = {"2","24","5", "16", "ds23", "", "",
+                "", "Test/Vernieri", "", "White"};
+
+        String[] defaultData11 = {"2","24","10", "16", "ds23", "", "",
+                "", "Test/Vernieri", "", "White"};
+
+        String[] defaultData12 = {"2","23","8 3/4", "16", "ds23", "", "",
+                "", "Test/Vernieri", "", "White"};
+
+        String[] defaultData13 = {"2","23","7 1/2", "16", "ds23", "", "",
+                "", "Test/Vernieri", "", "White"};
+
+        String[] defaultData14 = {"2","24","6 1/4", "16", "ds23", "", "",
+                "", "Test/Vernieri", "", "White"};
+
+        String[] defaultData15 = {"2","23","5", "16", "ds23", "", "",
+                "", "Test/Vernieri", "", "White"};
+
+        String[] defaultData16 = {"2","23","10", "16", "ds23", "", "",
                 "", "Test/Vernieri", "", "White"};
 
 
@@ -66,7 +88,16 @@ public class ClosetGUI extends JFrame {
 //        dtm.addRow(defaultData4);
 //        dtm.addRow(defaultData5);
 //        dtm.addRow(defaultData6);
-//        dtm.addRow(defaultData7);
+        dtm.addRow(defaultData7);
+        dtm.addRow(defaultData8);
+//        dtm.addRow(defaultData9);
+//        dtm.addRow(defaultData10);
+//        dtm.addRow(defaultData11);
+//        dtm.addRow(defaultData12);
+//        dtm.addRow(defaultData13);
+//        dtm.addRow(defaultData14);
+//        dtm.addRow(defaultData15);
+//        dtm.addRow(defaultData16);
         jTable.getTableHeader().setOpaque(false);
         jTable.getTableHeader().setBackground(Color.ORANGE);
 

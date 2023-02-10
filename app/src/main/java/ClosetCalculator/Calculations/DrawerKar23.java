@@ -82,44 +82,44 @@ public class DrawerKar23 {
         ArrayList<String> frontAndBack1 = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 2),
                 "5", "H","x", SubtractFromString.sub(drawers.get(1), "4.0625"),
-                "W", "", "", "", "Drawer F&B",
+                "W", "", "", "", "Drawer Sides",
                 drawers.get(4), drawers.get(8), drawers.get(9)));
 
         ArrayList<String> frontAndBack234 = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 4),
                 "6 1/4", "H","x", SubtractFromString.sub(drawers.get(1), "4.0625"),
-                "W", "", "", "", "Drawer F&B",
+                "W", "", "", "", "Drawer Sides",
                 drawers.get(4), drawers.get(8), drawers.get(9)));
 
         ArrayList<String> frontAndBack5 = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 4),
                 "7 1/2", "H","x", SubtractFromString.sub(drawers.get(1), "4.0625"),
-                "W", "", "", "", "Drawer F&B",
+                "W", "", "", "", "Drawer Sides",
                 drawers.get(4), drawers.get(8), drawers.get(9)));
 
         // Sides
         ArrayList<String> sides1 = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 2),
-                "5", "H","x", SubtractFromString.sub8th(drawers.get(3)),
+                "5", "H","x", SubtractFromString.subHalfInch(drawers.get(3)),
                 "W", "", "", "", "Drawer F&B",
                 drawers.get(4), drawers.get(8), drawers.get(9)));
 
         ArrayList<String> sides234 = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 4),
-                "6 1/4", "H","x", SubtractFromString.sub8th(drawers.get(3)),
+                "6 1/4", "H","x", SubtractFromString.subHalfInch(drawers.get(3)),
                 "W", "", "", "", "Drawer F&B",
                 drawers.get(4), drawers.get(8), drawers.get(9)));
 
         ArrayList<String> sides5 = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 4),
-                "7 1/2", "H","x", SubtractFromString.sub8th(drawers.get(3)),
+                "7 1/2", "H","x", SubtractFromString.subHalfInch(drawers.get(3)),
                 "W", "", "", "", "Drawer F&B",
                 drawers.get(4), drawers.get(8), drawers.get(9)));
 
         // Bottoms
         ArrayList<String> bottomDrawer = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 5),  "", "", "",
-                SubtractFromString.sub8th(drawers.get(3)), "D","x",
+                SubtractFromString.subHalfInch(drawers.get(3)), "D","x",
                 SubtractFromString.sub(drawers.get(1), "2.5625"),
                 "W", "Drawer Bottom (1/4')",
                 drawers.get(4), drawers.get(8), drawers.get(9)));

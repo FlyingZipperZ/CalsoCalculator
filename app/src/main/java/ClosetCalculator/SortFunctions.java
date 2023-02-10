@@ -17,7 +17,6 @@ public class SortFunctions {
                     }
                 }
             }
-
             ArrayList<String> temp = list.get(m);
             list.set(m, list.get(i));
             list.set(i, temp);

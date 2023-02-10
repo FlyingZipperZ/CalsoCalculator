@@ -8,6 +8,8 @@ import org.apache.poi.xssf.usermodel.*;
 
 import java.util.Objects;
 
+import static ClosetCalculator.Components.JtextField.colorTxt;
+
 public class ColorRow {
 
     // Gets color from colorTxt and puts it at the bottom of the file
@@ -32,6 +34,6 @@ public class ColorRow {
 
         cells[1] = rows.createCell(1);
         cells[1].setCellStyle(rowStyle);
-        cells[1].setCellValue(InputsLabelTxt.colorTxt.getText());
+        cells[1].setCellValue(colorTxt.getText());
     }
 }

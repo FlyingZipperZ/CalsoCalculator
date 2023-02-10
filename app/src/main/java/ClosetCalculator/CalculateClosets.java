@@ -1,12 +1,18 @@
 package ClosetCalculator;
 
 import ClosetCalculator.Calculations.*;
-import ClosetCalculator.Frames.SaveFile;
-import ClosetCalculator.Panels.InputsLabelTxt;
 import ExcelOut.ExcelOutput;
 
 import javax.swing.table.DefaultTableModel;
 import java.util.*;
+
+import static ClosetCalculator.Calculations.DrawerDS23.createDS23;
+import static ClosetCalculator.Calculations.DrawerFX23.createFX23;
+import static ClosetCalculator.Calculations.DrawerFX24.createFX24;
+import static ClosetCalculator.Calculations.DrawerKar23.createKar23;
+import static ClosetCalculator.Calculations.DrawerKar24.createKar24;
+import static ClosetCalculator.Calculations.UpRight.calcUpRight;
+import static ClosetCalculator.SortFunctions.sortReversed;
 
 public class CalculateClosets {
 
@@ -19,13 +25,15 @@ public class CalculateClosets {
         System.out.println("Closets Are being calculated\n");
         Vector<Vector> data = dtm.getDataVector();
         ArrayList<ArrayList<String>> list = new ArrayList<>();
+        ArrayList<ArrayList<String>> drawerListds23 = new ArrayList<>();
+        ArrayList<ArrayList<String>> drawerListds24 = new ArrayList<>();
         ArrayList<ArrayList<String>> drawerList = new ArrayList<>();
         ArrayList<ArrayList<String>> rodsList = new ArrayList<>();
 
         for (Vector datum : data) {
             switch ((String) datum.get(4)) {
                 case "u":
-                    list.add(UpRight.calcUpRight(datum));
+                    list.add(calcUpRight(datum));
                     break;
                 case "s":
                     list.addAll(Shelves.calcShelves(datum));
@@ -37,22 +45,22 @@ public class CalculateClosets {
                     list.add(Tops.calcUpRight(datum));
                     break;
                 case "ds23":
-                    drawerList.addAll(DrawerDS23.createDS23(datum));
+                    drawerListds23.add(new ArrayList<String>(datum.stream().toList()));
                     break;
                 case "ds24":
-                    drawerList.addAll(DrawerDS24.createDS24(datum));
+                    drawerListds24.add(new ArrayList<String>(datum.stream().toList()));
                     break;
                 case "fx23":
-                    drawerList.addAll(DrawerFX23.createFX23(datum));
+                    drawerList.addAll(createFX23(datum));
                     break;
                 case "fx24":
-                    drawerList.addAll(DrawerFX24.createFX24(datum));
+                    drawerList.addAll(createFX24(datum));
                     break;
                 case "kar23":
-                    drawerList.addAll(DrawerKar23.createKar23(datum));
+                    drawerList.addAll(createKar23(datum));
                     break;
                 case "kar24":
-                    drawerList.addAll(DrawerKar24.createKar24(datum));
+                    drawerList.addAll(createKar24(datum));
                     break;
             }
         }
@@ -65,27 +73,27 @@ public class CalculateClosets {
             }
         }.reversed());
 
-        // Sorts drawerList by height
-        drawerList.sort(new Comparator<ArrayList<String>>() {
-            @Override
-            public int compare(ArrayList<String> o1, ArrayList<String> o2) {
-                return o1.get(7).compareTo(o2.get(7));
-            }
-        }.reversed());
+        if (!drawerListds23.isEmpty()) {
+            drawerList.addAll(createDS23(drawerListds23));
+        } else {
+            System.out.println("DS23 Not Populated");
+        }
+
+        if (!drawerListds24.isEmpty()) {
+            drawerList.addAll(createDS23(drawerListds23));
+        } else {
+            System.out.println("DS24 Not Populated");
+        }
 
         // Sorts drawerList by width
-        drawerList.sort(new Comparator<ArrayList<String>>() {
-            @Override
-            public int compare(ArrayList<String> o1, ArrayList<String> o2) {
-                return o1.get(1).compareTo(o2.get(1));
-            }
-        }.reversed());
-
-        // Sorts drawerList by width
-        SortFunctions.sortReversed(1, drawerList);
+        sortReversed(1, drawerList);
 
         // Sorts drawerList by height
-        SortFunctions.sortReversed(7, rodsList);
+        sortReversed(7, rodsList);
+
+//        for (int i = 0; i < drawerList.size(); i++) {
+//            System.out.println(drawerList.get(i));
+//        }
 
         // Calls ExcelOutput to create the Excel file
         ExcelOutput.createExcel(list, drawerList, rodsList);
