@@ -53,15 +53,14 @@ public class SubtractFromString {
         // Checks to see if the number in the shelvesList.get(3) slot has any spaces indicating that there is a fraction
         if(number.contains(" ")) {
             inch = convertDecimalToFraction(convertFractionToDecimal(number) - convertFractionToDecimal(subNumber));
-        } else if(number.contains(".")) {
-            String[] charNum = number.split("\\.");
-            inch = charNum[0] + convertDecimalToFraction(Double.parseDouble("." + charNum[1]) - Double.parseDouble("." + charSubNum[1]));
         } else {
-            int value = Integer.parseInt(number) - Integer.parseInt(charSubNum[0]);
-            value--;
-            inch = value + convertDecimalToFraction(1 - Double.parseDouble("." + charSubNum[1]));
+            double value = Double.parseDouble(number) - Double.parseDouble(subNumber);
+            if (value % 1 == 0) {
+                inch = String.valueOf((int)value);
+            } else {
+                inch = String.valueOf(value);
+            }
         }
-
         return inch;
     }
 }

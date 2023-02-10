@@ -1,7 +1,5 @@
 package ClosetCalculator.Calculations.DrawerUnits;
 
-import ClosetCalculator.Calculations.DecimalToFraction;
-import ClosetCalculator.Calculations.FractionToDecimal;
 import ClosetCalculator.Calculations.SubtractFromString;
 import ClosetCalculator.SortFunctions;
 
@@ -10,10 +8,12 @@ import java.util.List;
 import java.util.Objects;
 
 import static ClosetCalculator.Calculations.AddToString.add;
-import static ClosetCalculator.Calculations.DecimalToFraction.convertDecimalToFraction;
+import static ClosetCalculator.Calculations.CheckNum.checkNumber;
+import static ClosetCalculator.Calculations.FractionToDecimal.convertFractionToDecimal;
+import static ClosetCalculator.Calculations.SubtractFromString.sub;
 
 public class DrawerDS24 {
-    public static ArrayList<ArrayList<String>> createDS24(ArrayList<ArrayList<String>> drawerListds24) {
+    public static ArrayList<ArrayList<String>> createDS24(ArrayList<ArrayList<String>> drawerListDS24) {
 
         /**
          * Input
@@ -33,11 +33,11 @@ public class DrawerDS24 {
          * Drawer Bottoms * 5
          */
 
-        SortFunctions.sortReversed(1, drawerListds24);
+        SortFunctions.sortReversed(1, drawerListDS24);
 
         System.out.println("Input");
-        for (int i = 0; i < drawerListds24.size(); i++) {
-            System.out.println(drawerListds24.get(i));
+        for (int i = 0; i < drawerListDS24.size(); i++) {
+            System.out.println(drawerListDS24.get(i));
         }
 
         // Create top and bottom arraylist
@@ -62,10 +62,10 @@ public class DrawerDS24 {
 //        System.out.println();
         drawers.add(new ArrayList<ArrayList<String>>());
         // Add different units to different axis
-        for (int x = 0; x < drawerListds24.size(); x++) {
-            drawers.get(arrayZ).add(arrayY++, drawerListds24.get(x));
-            if (drawerListds24.size() > x+1) {
-                if (!Objects.equals(drawerListds24.get(x).get(1), drawerListds24.get(x + 1).get(1))) {
+        for (int x = 0; x < drawerListDS24.size(); x++) {
+            drawers.get(arrayZ).add(arrayY++, drawerListDS24.get(x));
+            if (drawerListDS24.size() > x+1) {
+                if (!Objects.equals(drawerListDS24.get(x).get(1), drawerListDS24.get(x + 1).get(1))) {
                     arrayY = 0;
                     arrayZ++;
                     drawers.add(new ArrayList<ArrayList<String>>());
@@ -85,9 +85,16 @@ public class DrawerDS24 {
         int locationClient = 8;
         int locationColor = 9;
 
+        String drawerWidth = "";
+        String drawerHeight = "";
+        String drawerDepth = "";
+        String drawerType = "";
+        String drawerClient = "";
+        String drawerColor = "";
+
         // Get widths of all different z axis parts
         for (int z = 0; z < drawers.size(); z++) {
-            depth = FractionToDecimal.convertFractionToDecimal(drawers.get(z).get(0).get(locationDepth));
+            depth = convertFractionToDecimal(drawers.get(z).get(0).get(locationDepth));
             for (int y = 0; y < drawers.get(z).size(); y++) {
 
                 // Sub the 0.5
@@ -95,15 +102,15 @@ public class DrawerDS24 {
 
                 int partMultiplier = Integer.parseInt(drawers.get(z).get(0).get(locationPart));
                 for (int multi = 0; multi < partMultiplier; multi++) {
-                    heightDrawer += FractionToDecimal.convertFractionToDecimal(drawers.get(z).get(y).get(locationHeight));
+                    heightDrawer += convertFractionToDecimal(drawers.get(z).get(y).get(locationHeight));
                 }
 
-                String drawerWidth = drawers.get(z).get(y).get(locationWidth);
-                String drawerHeight = drawers.get(z).get(y).get(locationHeight);
-                String drawerDepth = drawers.get(z).get(y).get(locationDepth);
-                String drawerType = drawers.get(z).get(y).get(locationType);
-                String drawerClient = drawers.get(z).get(y).get(locationClient);
-                String drawerColor = drawers.get(z).get(y).get(locationColor);
+                drawerWidth = checkNumber(drawers.get(z).get(y).get(locationWidth));
+                drawerHeight = checkNumber(drawers.get(z).get(y).get(locationHeight));
+                drawerDepth = checkNumber(drawers.get(z).get(y).get(locationDepth));
+                drawerType = drawers.get(z).get(y).get(locationType);
+                drawerClient = drawers.get(z).get(y).get(locationClient);
+                drawerColor = drawers.get(z).get(y).get(locationColor);
 
                 // Faces
                 face.add(new ArrayList<>(List.of(
@@ -114,10 +121,10 @@ public class DrawerDS24 {
                         drawerClient,
                         drawerColor)));
 
-                String boxWidth = SubtractFromString.sub(drawerWidth, "4.0625");
-                String boxHeight = SubtractFromString.sub(drawerHeight, "1.25");
-                String boxDepth = SubtractFromString.sub(drawerDepth, "0.25");
-                String boxBottomWith = SubtractFromString.sub(drawerWidth, "2.5625");
+                String boxWidth = checkNumber(sub(drawerWidth, "4.0625"));
+                String boxHeight = checkNumber(sub(String.valueOf(heightDrawer), "1.25"));
+                String boxDepth = checkNumber(sub(drawerDepth, "0.25"));
+                String boxBottomWith = checkNumber(sub(drawerWidth, "2.5625"));
 
                 frontAndBack.add(new ArrayList<>(List.of(
                         String.valueOf(partMultiplier * 2),
@@ -151,20 +158,22 @@ public class DrawerDS24 {
             // Create top and bottom arraylist
             top = new ArrayList<>(List.of(
                     String.valueOf(1),
-                    drawers.get(z).get(0).get(locationDepth), "D","x", drawers.get(z).get(0).get(locationWidth), "W", "",
+                    drawerDepth, "D","x", drawerWidth, "W", "",
                     "", "", "Top",
-                    drawers.get(z).get(0).get(locationType),
-                    drawers.get(z).get(0).get(locationClient),
-                    drawers.get(z).get(0).get(locationColor)));
+                    drawerType,
+                    drawerClient,
+                    drawerColor
+            ));
 
             // Create top and bottom arraylist
             bottom = new ArrayList<>(List.of(
                     String.valueOf(1),
-                    drawers.get(z).get(0).get(locationDepth), "D","x", drawers.get(z).get(0).get(locationWidth), "W", "",
+                    drawerDepth, "D","x", drawerWidth, "W", "",
                     "", "", "Bottom",
-                    drawers.get(z).get(0).get(locationType),
-                    drawers.get(z).get(0).get(locationClient),
-                    drawers.get(z).get(0).get(locationColor)));
+                    drawerType,
+                    drawerClient,
+                    drawerColor
+            ));
 
             String depthInput = "";
             if (depth % 1 == 0) {
@@ -174,11 +183,11 @@ public class DrawerDS24 {
             }
             uprights = new ArrayList<>(List.of(String.valueOf(2),
                     "", "", "",
-                    SubtractFromString.sub(depthInput, "0.25"), "D", "x",
-                    convertDecimalToFraction(heightDrawer), "H", "Upright/WH",
-                    drawers.get(z).get(0).get(locationType),
-                    drawers.get(z).get(0).get(locationClient),
-                    drawers.get(z).get(0).get(locationColor)
+                    checkNumber(sub(depthInput, "0.25")), "D", "x",
+                    drawerHeight, "H", "Upright/WH",
+                    drawerType,
+                    drawerClient,
+                    drawerColor
             ));
 
             heightDrawer = 0;

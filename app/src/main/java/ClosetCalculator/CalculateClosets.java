@@ -5,6 +5,7 @@ import ExcelOut.ExcelOutput;
 
 import javax.swing.table.DefaultTableModel;
 import java.util.*;
+import java.util.logging.Logger;
 
 import static ClosetCalculator.Calculations.ClosetParts.Filler.createFiller;
 import static ClosetCalculator.Calculations.ClosetParts.Rods.calcRods;
@@ -38,6 +39,7 @@ public class CalculateClosets {
             switch ((String) datum.get(4)) {
                 case "u":
                     list.add(calcUpRight(datum));
+
                     break;
                 case "s":
                     list.addAll(Shelves.calcShelves(datum));
@@ -96,8 +98,12 @@ public class CalculateClosets {
         // Sorts drawerList by height
         sortReversed(7, rodsList);
 
+        for (int i = 0; i < drawerList.size(); i++){
+            System.out.println(drawerList.get(i));
+        }
+
         // Calls ExcelOutput to create the Excel file
-        ExcelOutput.createExcel(list, drawerList, rodsList, filler);
+//        ExcelOutput.createExcel(list, drawerList, rodsList, filler);
 
         System.out.println("\nList Run Successful");
     }

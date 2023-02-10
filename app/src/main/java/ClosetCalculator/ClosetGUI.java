@@ -12,6 +12,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import javax.swing.JFrame;
@@ -25,10 +26,11 @@ import static ClosetCalculator.Components.JtextField.*;
 
 public class ClosetGUI extends JFrame {
     public ClosetGUI() {
+//        List da = new ArrayList();
         String[] header = {"No. Pieces","Width","Height", "Depth", "Type", "No. Rods", "No. Shel",
                 "Shel Dep", "Client", "Notes", "Color"};
 
-        String[] defaultData1 = {"7","","90 1/2", "15 7/8", "u", "", "",
+        String[] defaultData1 = {"7","","90.5", "15.875", "u", "", "",
                 "", "Left/Vernieri", "CNC", "White"};
 
         String[] defaultData2 = {"3","","80 1/2", "15 7/8", "u", "", "",
@@ -43,7 +45,7 @@ public class ClosetGUI extends JFrame {
         String[] defaultData5 = {"1","24","", "15 7/8", "fx23", "", "",
                 "", "Master/Vernieri", "", "White"};
 
-        String[] defaultData6 = {"1","24","", "15 7/8", "kar23", "", "",
+        String[] defaultData6 = {"1","24","6.25", "15.875", "ds23", "", "",
                 "", "Master/Vernieri", "", "White"};
 
         String[] defaultData7 = {"2","24","8 3/4", "16", "ds23", "", "",
