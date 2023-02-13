@@ -19,9 +19,10 @@ public class InputButtons {
 
         // Constraints
         GridBagConstraints constraints = new GridBagConstraints();
+        constraints.insets = new Insets(10, 40, 10, 40);
 
-        closetButtons(constraints, panel, (JButton) ADD, 0, 0);
-        closetButtons(constraints, panel, (JButton) DELETE, 1, 0);
+        closetButtons(constraints, panel, (JButton) ADD, 1, 0);
+        closetButtons(constraints, panel, (JButton) DELETE, 0, 0);
 
         return panel;
     }
