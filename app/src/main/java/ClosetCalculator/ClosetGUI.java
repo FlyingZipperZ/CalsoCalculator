@@ -12,113 +12,26 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Objects;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import static ClosetCalculator.Components.Buttons.*;
 import static ClosetCalculator.Components.JtextField.*;
+import static ClosetCalculator.Components.Table.getJTable;
 
 public class ClosetGUI extends JFrame {
     public ClosetGUI() {
 //        List da = new ArrayList();
-        String[] header = {"No. Pieces","Width","Height", "Depth", "Type", "No. Rods", "No. Shel",
-                "Shel Dep", "Client", "Notes", "Color"};
-
-        String[] defaultData1 = {"7","","90.5", "15.875", "u", "", "",
-                "", "Left/Vernieri", "CNC", "White"};
-
-        String[] defaultData2 = {"3","","80 1/2", "15 7/8", "u", "", "",
-                "", "Right/Vernieri", "CNC", "White"};
-
-        String[] defaultData3 = {"1","65 7/8","", "15 7/8", "t", "", "",
-                "", "Right/Vernieri", "", "White"};
-
-        String[] defaultData4 = {"1","40 15/16","", "12", "s", "1", "",
-                "", "Right/Vernieri", "", "White"};
-
-        String[] defaultData5 = {"1","24","", "15 7/8", "fx23", "", "",
-                "", "Master/Vernieri", "", "White"};
-
-        String[] defaultData6 = {"1","24","6.25", "15.875", "ds23", "", "",
-                "", "Master/Vernieri", "", "White"};
-
-        String[] defaultData7 = {"2","24","8 3/4", "16", "ds23", "", "",
-                "", "Test/Vernieri", "", "White"};
-
-        String[] defaultData8 = {"2","24","7 1/2", "16", "ds23", "", "",
-                "", "Test/Vernieri", "", "White"};
-
-        String[] defaultData9 = {"2","23","6 1/4", "16", "ds23", "", "",
-                "", "Test/Vernieri", "", "White"};
-
-        String[] defaultData10 = {"2","24","5", "16", "ds23", "", "",
-                "", "Test/Vernieri", "", "White"};
-
-        String[] defaultData11 = {"2","24","10", "16", "ds23", "", "",
-                "", "Test/Vernieri", "", "White"};
-
-        String[] defaultData12 = {"2","23","8 3/4", "16", "ds23", "", "",
-                "", "Test/Vernieri", "", "White"};
-
-        String[] defaultData13 = {"2","23","7 1/2", "16", "ds23", "", "",
-                "", "Test/Vernieri", "", "White"};
-
-        String[] defaultData14 = {"2","24","6 1/4", "16", "ds23", "", "",
-                "", "Test/Vernieri", "", "White"};
-
-        String[] defaultData15 = {"2","23","5", "16", "ds23", "", "",
-                "", "Test/Vernieri", "", "White"};
-
-        String[] defaultData16 = {"2","23","10", "16", "ds23", "", "",
-                "", "Test/Vernieri", "", "White"};
-
+        String[] header = {"Pieces", "Width", "Height", "Depth", "Type", "Rod", "No. Shel",
+                "Client", "Notes", "Color", "Top", "Bot"};
 
         // Create JTable to allow data to flow through the app
-        JTable jTable = new JTable();
         DefaultTableModel dtm = new DefaultTableModel(0, 0);
-        dtm.setColumnIdentifiers(header);
-        jTable.setModel(dtm);
-//        dtm.addRow(defaultData1);
-//        dtm.addRow(defaultData2);
-//        dtm.addRow(defaultData3);
-//        dtm.addRow(defaultData4);
-//        dtm.addRow(defaultData5);
-//        dtm.addRow(defaultData6);
-//        dtm.addRow(defaultData7);
-//        dtm.addRow(defaultData8);
-//        dtm.addRow(defaultData9);
-//        dtm.addRow(defaultData10);
-//        dtm.addRow(defaultData11);
-//        dtm.addRow(defaultData12);
-//        dtm.addRow(defaultData13);
-//        dtm.addRow(defaultData14);
-//        dtm.addRow(defaultData15);
-//        dtm.addRow(defaultData16);
-        jTable.getTableHeader().setOpaque(false);
-        jTable.getTableHeader().setBackground(Color.ORANGE);
-
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-
-        jTable.getColumnModel().getColumn(0).setPreferredWidth(40);
-        jTable.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
-        jTable.getColumnModel().getColumn(1).setPreferredWidth(40);
-        jTable.getColumnModel().getColumn(2).setPreferredWidth(40);
-        jTable.getColumnModel().getColumn(3).setPreferredWidth(40);
-        jTable.getColumnModel().getColumn(4).setPreferredWidth(20);
-        jTable.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
-        jTable.getColumnModel().getColumn(5).setPreferredWidth(30);
-        jTable.getColumnModel().getColumn(6).setPreferredWidth(30);
-        jTable.getColumnModel().getColumn(7).setPreferredWidth(30);
-        jTable.getColumnModel().getColumn(8).setPreferredWidth(100);
-        jTable.getColumnModel().getColumn(9).setPreferredWidth(100);
-        jTable.getColumnModel().getColumn(10).setPreferredWidth(100);
+        JTable jTable = getJTable(dtm, header);
 
         // Main Panel the houses everything
         JPanel mainPanel = new JPanel(new GridBagLayout());
@@ -182,12 +95,15 @@ public class ClosetGUI extends JFrame {
                     } else {
                         InputsLabelTxt.addToTable(jTable, dtm);
                     }
-                } else if (Objects.equals(type, "s") || Objects.equals(type, "t")) {
+                }
+                // Shelves
+                else if (Objects.equals(type, "s") || Objects.equals(type, "t")) {
                     if (widthTxt.getText().isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Width is empty");
                     } else if (depthTxt.getText().isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Depth is empty");
                     } else {
+
                         InputsLabelTxt.addToTable(jTable, dtm);
                     }
                 } else if (Objects.equals(type, "ds23") || Objects.equals(type, "ds24")) {

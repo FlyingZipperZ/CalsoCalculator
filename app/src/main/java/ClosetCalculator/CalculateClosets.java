@@ -1,19 +1,18 @@
 package ClosetCalculator;
 
 import ClosetCalculator.Calculations.ClosetParts.Shelves;
-import ExcelOut.ExcelOutput;
 
 import javax.swing.table.DefaultTableModel;
 import java.util.*;
-import java.util.logging.Logger;
 
 import static ClosetCalculator.Calculations.ClosetParts.Filler.createFiller;
 import static ClosetCalculator.Calculations.ClosetParts.Rods.calcRods;
 import static ClosetCalculator.Calculations.DrawerUnits.DrawerDS23.createDS23;
-import static ClosetCalculator.Calculations.DrawerUnits.DrawerFX23.createFX23;
-import static ClosetCalculator.Calculations.DrawerUnits.DrawerFX24.createFX24;
-import static ClosetCalculator.Calculations.DrawerUnits.DrawerKar23.createKar23;
-import static ClosetCalculator.Calculations.DrawerUnits.DrawerKar24.createKar24;
+import static ClosetCalculator.Calculations.DrawerUnits.DrawerDS24.createDS24;
+import static ClosetCalculator.Calculations.DrawerUnits.FX.DrawerFX23.createFX23;
+import static ClosetCalculator.Calculations.DrawerUnits.FX.DrawerFX24.createFX24;
+import static ClosetCalculator.Calculations.DrawerUnits.Kar.DrawerKar23.createKar23;
+import static ClosetCalculator.Calculations.DrawerUnits.Kar.DrawerKar24.createKar24;
 import static ClosetCalculator.Calculations.ClosetParts.Tops.tops;
 import static ClosetCalculator.Calculations.ClosetParts.UpRight.calcUpRight;
 import static ClosetCalculator.SortFunctions.sortReversed;
@@ -87,7 +86,7 @@ public class CalculateClosets {
         }
 
         if (!drawerListds24.isEmpty()) {
-            drawerList.addAll(createDS23(drawerListds23));
+            drawerList.addAll(createDS24(drawerListds24));
         } else {
             System.out.println("DS24 Not Populated");
         }

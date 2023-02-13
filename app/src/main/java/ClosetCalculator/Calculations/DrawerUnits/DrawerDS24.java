@@ -9,29 +9,12 @@ import java.util.Objects;
 
 import static ClosetCalculator.Calculations.AddToString.add;
 import static ClosetCalculator.Calculations.CheckNum.checkNumber;
+import static ClosetCalculator.Calculations.DrawerUnits.AddShelve.addShelves;
 import static ClosetCalculator.Calculations.FractionToDecimal.convertFractionToDecimal;
 import static ClosetCalculator.Calculations.SubtractFromString.sub;
 
 public class DrawerDS24 {
     public static ArrayList<ArrayList<String>> createDS24(ArrayList<ArrayList<String>> drawerListDS24) {
-
-        /**
-         * Input
-         * 0 = numPieces stay 0
-         * 1 = width make 4
-         * 2 = Height make 4
-         * 3 = Depth make 1
-         * 4 = Type make 10
-         * 8 = Client make 11
-         * 9 = notes make 12
-         * Top
-         * Bottom
-         * uprights * 2 generate auto 37 7/8
-         * 5 faces
-         * Drawer F&B * 10
-         * Drawer Sides * 10
-         * Drawer Bottoms * 5
-         */
 
         SortFunctions.sortReversed(1, drawerListDS24);
 
@@ -82,6 +65,7 @@ public class DrawerDS24 {
         int locationHeight = 2;
         int locationDepth = 3;
         int locationType = 4;
+        int locationShelveNumber = 6;
         int locationClient = 8;
         int locationColor = 9;
 
@@ -91,6 +75,8 @@ public class DrawerDS24 {
         String drawerType = "";
         String drawerClient = "";
         String drawerColor = "";
+
+        int shelveNumber = 0;
 
         // Get widths of all different z axis parts
         for (int z = 0; z < drawers.size(); z++) {
@@ -103,6 +89,7 @@ public class DrawerDS24 {
                 int partMultiplier = Integer.parseInt(drawers.get(z).get(0).get(locationPart));
                 for (int multi = 0; multi < partMultiplier; multi++) {
                     heightDrawer += convertFractionToDecimal(drawers.get(z).get(y).get(locationHeight));
+                    shelveNumber += Integer.parseInt(drawers.get(z).get(y).get(locationShelveNumber));
                 }
 
                 drawerWidth = checkNumber(drawers.get(z).get(y).get(locationWidth));
@@ -192,16 +179,20 @@ public class DrawerDS24 {
 
             heightDrawer = 0;
         }
-        ArrayList<ArrayList<String>> drawer23 = new ArrayList<>();
+        ArrayList<ArrayList<String>> drawer24 = new ArrayList<>();
 
-        drawer23.add(top);
-        drawer23.add(bottom);
-        drawer23.addAll(face);
-        drawer23.addAll(frontAndBack);
-        drawer23.addAll(sides);
-        drawer23.add(uprights);
-        drawer23.addAll(bottomBox);
+        drawer24.add(top);
+        drawer24.add(bottom);
+        drawer24.addAll(face);
+        drawer24.addAll(frontAndBack);
+        drawer24.addAll(sides);
+        drawer24.add(uprights);
+        drawer24.addAll(bottomBox);
 
-        return drawer23;
+        if (shelveNumber > 0) {
+            drawer24.add(addShelves(shelveNumber, top));
+        }
+
+        return drawer24;
     }
 }

@@ -21,12 +21,6 @@ public class AddToString {
             } else {
                 inch = String.valueOf(value);
             }
-//        } else {
-//            inch =
-//            int value = Integer.parseInt(number) + Integer.parseInt(charSubNum[0]);
-//            value++;
-//            inch = value + convertDecimalToFraction(1 - Double.parseDouble("." + charSubNum[1]));
-//            System.out.println(inch);
         }
         return inch;
     }

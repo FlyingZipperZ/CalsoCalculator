@@ -12,6 +12,31 @@ public class SubtractFromString {
      * @param number number can come in different formats
      * @return String of number after subtracted
      */
+    public static String sub8thInch(String number) {
+
+        String inch;
+
+        double eightTH = (double)1/8;
+
+        // Checks to see if the number in the shelvesList.get(3) slot has any spaces indicating that there is a fraction
+        if(number.contains(" ")) {
+            String[] charNum = number.split(" ");
+            String[] charDiv = charNum[1].split("/");
+            int numerator = Integer.parseInt(charDiv[0]);
+            int denominator = Integer.parseInt(charDiv[1]);
+            double fraction = (double) numerator/denominator;
+            inch = charNum[0] + convertDecimalToFraction(fraction  - eightTH);
+        } else if(number.contains(".")) {
+            String[] charNum = number.split("\\.");
+            inch = charNum[0] + convertDecimalToFraction(Double.parseDouble("." + charNum[1])  - eightTH);
+        } else {
+            int value = Integer.parseInt(number);
+            value--;
+            inch = value + convertDecimalToFraction(1 - eightTH);
+        }
+        return inch;
+    }
+
     public static String subHalfInch(String number) {
 
         String inch;

@@ -6,6 +6,7 @@ import java.awt.*;
 
 import static ClosetCalculator.Components.Jlabel.*;
 import static ClosetCalculator.Components.JtextField.*;
+import static ClosetCalculator.Components.Radios.*;
 
 public class InputsLabelTxt {
     private static void closetInputComponents(GridBagConstraints constraints, JPanel newPanel, JLabel label,
@@ -30,6 +31,7 @@ public class InputsLabelTxt {
 
         constraints.insets = new Insets(5, 0, 5, 0);
         constraints.anchor = GridBagConstraints.WEST;
+
         // add components to the panel
         closetInputComponents(constraints, panel, client, clientTxt,0,gridy++);
         closetInputComponents(constraints, panel, room, roomTxt,0,gridy++);
@@ -43,7 +45,6 @@ public class InputsLabelTxt {
         closetInputComponents(constraints, panel, type, typeTxt,0,gridy++);
         closetInputComponents(constraints, panel, numRod, rodsTxt,0,gridy++);
         closetInputComponents(constraints, panel, numShelve, numShelvesTxt,0,gridy++);
-        closetInputComponents(constraints, panel, shelveDepth, shelveDepthTxt,0,gridy++);
         closetInputComponents(constraints, panel, notes, notesTxt,0,gridy++);
 
         return panel;
@@ -55,11 +56,23 @@ public class InputsLabelTxt {
         } else {
             jTable.setGridColor(Color.BLACK);
             String type = typeTxt.getText().trim().toLowerCase();
+            boolean top = false;
+            if (topYesRadio.isSelected()) {
+                top = true;
+            } else if (topNoRadio.isSelected()){
+                top = false;
+            }
+            boolean bot = true;
+            if (bottomYesRadio.isSelected()) {
+                bot = true;
+            } else if (bottomNoRadio.isSelected()){
+                bot = false;
+            }
             dtm.addRow(new Object[]{numPiecesTxt.getText().trim(), widthTxt.getText().trim(),
                     heightTxt.getText().trim(), depthTxt.getText().trim(), type,
-                    rodsTxt.getText().trim(), numShelvesTxt.getText().trim(), shelveDepthTxt.getText().trim(),
+                    rodsTxt.getText().trim(), numShelvesTxt.getText().trim(),
                     roomTxt.getText().trim() + "/" + clientTxt.getText().trim(),
-                    notesTxt.getText().trim(), colorTxt.getText().trim()}
+                    notesTxt.getText().trim(), colorTxt.getText().trim(), top, bot}
             );
 
             // Add an unseen panel that holds if that particular cell has a bottom or not
@@ -70,7 +83,6 @@ public class InputsLabelTxt {
             typeTxt.setText(null);
             rodsTxt.setText(null);
             numShelvesTxt.setText(null);
-            shelveDepthTxt.setText(null);
             notesTxt.setText(null);
         }
     }

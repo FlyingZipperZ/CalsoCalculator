@@ -4,10 +4,10 @@ import ClosetCalculator.Calculations.SubtractFromString;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Vector;
 
-import static ClosetCalculator.Components.Radios.bottomYesRadio;
-import static ClosetCalculator.Components.Radios.topYesRadio;
+import static ClosetCalculator.Calculations.SubtractFromString.sub8thInch;
 
 public class Shelves {
     /**
@@ -28,11 +28,11 @@ public class Shelves {
 
         newList.add(new ArrayList<>(List.of(
                 shelvesList.get(0),
-                SubtractFromString.subHalfInch(shelvesList.get(3)), "D", "x", shelvesList.get(1), "W", "",
+                shelvesList.get(3), "D", "x",  sub8thInch(shelvesList.get(1)), "W", "",
                 "", "", "",
                 shelvesList.get(4), shelvesList.get(8), shelvesList.get(9))));
 
-        if (topYesRadio.isSelected()) {
+        if (Objects.equals(String.valueOf(shelvesList.get(10)), "true")) {
             // ArrayList that holds bottom data if needed
             ArrayList<String> bottomList = new ArrayList<>(List.of(
                     shelvesList.get(0),
@@ -42,7 +42,7 @@ public class Shelves {
             newList.add(bottomList);
         }
 
-        if (bottomYesRadio.isSelected()) {
+        if (Objects.equals(String.valueOf(shelvesList.get(11)), "true")) {
             // ArrayList that holds bottom data if needed
             ArrayList<String> bottomList = new ArrayList<>(List.of(
                     shelvesList.get(0),
@@ -50,6 +50,10 @@ public class Shelves {
                     "", "", "",
                     "bot", shelvesList.get(8), shelvesList.get(9)));
             newList.add(bottomList);
+        }
+
+        for (int i = 0; i < newList.size(); i++) {
+            System.out.println(newList.get(i));
         }
 
         return newList;
