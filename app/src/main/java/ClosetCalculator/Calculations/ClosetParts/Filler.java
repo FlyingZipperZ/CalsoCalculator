@@ -15,7 +15,7 @@ public class Filler {
                 filler.get(0),
                 "", "", "",
                 filler.get(1), "W","x", filler.get(2), "H", "",
-                "Filler", filler.get(8), filler.get(9)));
+                "Filler", filler.get(7), filler.get(8)));
 
     }
 }

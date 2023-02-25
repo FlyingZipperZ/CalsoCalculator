@@ -16,6 +16,7 @@ public class LegendFrame extends JFrame {
                 {"r", "Rods"},
                 {"b", "Base"},
                 {"t", "Top"},
+                {"f", "Filler"},
                 {"ds23", "Drawer Cabinet"},
                 {"ds24", "Drawer Cabinet"},
                 {"fx23", "Full Extension 23.5"},

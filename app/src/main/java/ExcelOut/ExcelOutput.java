@@ -18,7 +18,7 @@ public class ExcelOutput {
                                    ArrayList<ArrayList<String>> rods, ArrayList<ArrayList<String>> fillers) {
         XSSFWorkbook workbook = new XSSFWorkbook();
 
-        XSSFSheet sheet = workbook.createSheet("test");
+        XSSFSheet sheet = workbook.createSheet();
 
         XSSFCellStyle plywood = workbook.createCellStyle();
         XSSFCellStyle restOfSheet = workbook.createCellStyle();

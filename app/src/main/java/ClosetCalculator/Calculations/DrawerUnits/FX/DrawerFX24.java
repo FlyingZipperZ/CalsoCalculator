@@ -58,7 +58,7 @@ public class DrawerFX24 {
 
         ArrayList<String> bottom = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier), "", "", "",
-                depthDrawer, "D","x", widthDrawer, "W",
+                sub(depthDrawer, "0.125"), "D","x", widthDrawer, "W",
                 "Bottom",
                 type, client, notes));
 
@@ -77,13 +77,13 @@ public class DrawerFX24 {
         ArrayList<ArrayList<String>> drawerUnit = new ArrayList<>();
 
         drawerUnit.add(top);
-        drawerUnit.add(bottom);
-        drawerUnit.add(upright);
         drawerUnit.addAll(calcFace(partMultiplier, faceWidth, type, client, notes));
         /**
          *  Drawer boxes
          */
         drawerUnit.addAll(calcBox(partMultiplier, widthDrawer, type, client, notes, depthDrawer));
+        drawerUnit.add(bottom);
+        drawerUnit.add(upright);
         drawerUnit.add(calcBottom(partMultiplier, depthDrawer, widthDrawer, type, client, notes));
 
 
@@ -94,3 +94,4 @@ public class DrawerFX24 {
         return drawerUnit;
     }
 }
+

@@ -1,10 +1,12 @@
 package ClosetCalculator;
 
 import ClosetCalculator.Calculations.ClosetParts.Shelves;
+import ExcelOut.ExcelOutput;
 
 import javax.swing.table.DefaultTableModel;
 import java.util.*;
 
+import static ClosetCalculator.Calculations.ClosetParts.Bottoms.bottoms;
 import static ClosetCalculator.Calculations.ClosetParts.Filler.createFiller;
 import static ClosetCalculator.Calculations.ClosetParts.Rods.calcRods;
 import static ClosetCalculator.Calculations.DrawerUnits.DrawerDS23.createDS23;
@@ -73,6 +75,9 @@ public class CalculateClosets {
                 case "r":
                     rodsList.addAll(calcRods(datum));
                     break;
+                case "b":
+                    list.add(bottoms(datum));
+                    break;
             }
         }
 
@@ -102,7 +107,7 @@ public class CalculateClosets {
         }
 
         // Calls ExcelOutput to create the Excel file
-//        ExcelOutput.createExcel(list, drawerList, rodsList, filler);
+        ExcelOutput.createExcel(list, drawerList, rodsList, filler);
 
         System.out.println("\nList Run Successful");
     }

@@ -30,7 +30,7 @@ public class Shelves {
                 shelvesList.get(0),
                 shelvesList.get(3), "D", "x",  sub8thInch(shelvesList.get(1)), "W", "",
                 "", "", "",
-                shelvesList.get(4), shelvesList.get(8), shelvesList.get(9))));
+                shelvesList.get(4), shelvesList.get(7), shelvesList.get(8))));
 
         if (Objects.equals(String.valueOf(shelvesList.get(10)), "true")) {
             // ArrayList that holds bottom data if needed
@@ -38,7 +38,7 @@ public class Shelves {
                     shelvesList.get(0),
                     shelvesList.get(3), "D","x", shelvesList.get(1), "W", "",
                     "", "", "",
-                    "t", shelvesList.get(8), shelvesList.get(9)));
+                    "t", shelvesList.get(7), shelvesList.get(8)));
             newList.add(bottomList);
         }
 
@@ -48,7 +48,7 @@ public class Shelves {
                     shelvesList.get(0),
                     shelvesList.get(3), "D","x", shelvesList.get(1), "W", "",
                     "", "", "",
-                    "bot", shelvesList.get(8), shelvesList.get(9)));
+                    "bot", shelvesList.get(7), shelvesList.get(8)));
             newList.add(bottomList);
         }
 

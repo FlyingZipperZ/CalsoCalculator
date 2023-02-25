@@ -30,7 +30,6 @@ public class DimensionCells {
         for (int i = 0; i < list.size(); i++) {
             cells[i] = rows.createCell(i);
             if (i == 0 || i == 1 || i == 4) {
-
                 cells[i].setCellValue(FractionToDecimal.convertFractionToDecimal(list.get(i)));
             } else if (!Objects.equals(list.get(i), null)) {
                 cells[i].setCellValue(list.get(i));
@@ -39,21 +38,12 @@ public class DimensionCells {
         }
     }
 
-    public static void changeCellBackgroundColor(Cell cell) {
-        CellStyle cellStyle = cell.getCellStyle();
-        if(cellStyle == null) {
-            cellStyle = cell.getSheet().getWorkbook().createCellStyle();
-        }
-        cellStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
-        cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-        cell.setCellStyle(cellStyle);
-    }
     public static void setDrawersRows(XSSFWorkbook workbook, XSSFSheet sheet, int rowNumber, ArrayList<String> drawers) {
         // Create excel style
         XSSFCellStyle cellStyle = workbook.createCellStyle();
 
         cellStyle.setFillForegroundColor(IndexedColors.YELLOW.getIndex());
-        cellStyle.setFillPattern(FillPatternType.FINE_DOTS);
+        cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 
         cellStyle.setAlignment(HorizontalAlignment.CENTER);
 
@@ -83,6 +73,9 @@ public class DimensionCells {
                 }
             }
             cells[i].setCellStyle(cellStyle);
+        }
+        for (int i = 0; i < cells.length; i++) {
+            sheet.autoSizeColumn(i);
         }
     }
 

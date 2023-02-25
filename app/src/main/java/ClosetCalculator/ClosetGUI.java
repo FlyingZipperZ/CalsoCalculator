@@ -141,6 +141,14 @@ public class ClosetGUI extends JFrame {
                     } else {
                         InputsLabelTxt.addToTable(jTable, dtm);
                     }
+                } else if (Objects.equals(type, "b")) {
+                    if (depthTxt.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Depth is empty");
+                    } else if (widthTxt.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Width is empty");
+                    } else {
+                        InputsLabelTxt.addToTable(jTable, dtm);
+                    }
                 } else {
                         JOptionPane.showMessageDialog(null, "Invalid Type");
                 }

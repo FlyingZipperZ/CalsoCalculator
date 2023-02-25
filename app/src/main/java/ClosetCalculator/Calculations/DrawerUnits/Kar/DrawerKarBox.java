@@ -23,7 +23,7 @@ public class DrawerKarBox {
         // Faces
         ArrayList<String> face23 = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 2),
-                "7 1/5", "H","x", faceWidth, "W", "",
+                "7 1/2", "H","x", faceWidth, "W", "",
                 "", "", "Face",
                 type, client, notes));
 
@@ -70,7 +70,7 @@ public class DrawerKarBox {
                 type, client, notes));
 
         // Sides
-        String boxDepth = checkNumber(subHalfInch(depthDrawer));
+        String boxDepth = checkNumber(sub(depthDrawer, "0.125"));
         ArrayList<String> sides1 = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 2),
                 "5", "H","x", boxDepth,

@@ -15,6 +15,6 @@ public class UpRight {
                 uprights.get(0),
                 uprights.get(3), "D","x", uprights.get(2), "W", "",
                 "", "", "",
-                uprights.get(4), uprights.get(8), uprights.get(9)));
+                uprights.get(4), uprights.get(7), uprights.get(8)));
     }
 }
