@@ -67,16 +67,18 @@ public class ExcelOutput {
 
         String location = SaveFile.createSavePopUp();
 
-        System.out.println(location);
+        System.out.println("location: " + location + ".xlsx");
 
-        // Output file
-        try {
-            FileOutputStream out =  new FileOutputStream(location + ".xlsx");
-            workbook.write(out);
-            out.close();
-            System.out.println("Excel with formula cells written successfully");
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (!location.equals("")) {
+            // Output file
+            try {
+                FileOutputStream out = new FileOutputStream(location + ".xlsx");
+                workbook.write(out);
+                out.close();
+                System.out.println("Excel with formula cells written successfully");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static ClosetCalculator.Calculations.AddToString.addNumbers;
 import static ClosetCalculator.Calculations.CheckNum.checkNumber;
 import static ClosetCalculator.Calculations.DrawerUnits.AddShelve.addShelves;
 import static ClosetCalculator.Calculations.FractionToDecimal.convertFractionToDecimal;
@@ -94,7 +95,7 @@ public class DrawerDS23 {
                 }
 
                 drawerWidth = checkNumber(drawers.get(z).get(y).get(locationWidth));
-                drawerHeight = checkNumber(drawers.get(z).get(y).get(locationHeight));
+                drawerHeight = addNumbers(checkNumber(drawers.get(z).get(y).get(locationHeight)), drawerHeight);
                 drawerDepth = checkNumber(drawers.get(z).get(y).get(locationDepth));
                 drawerType = drawers.get(z).get(y).get(locationType);
                 drawerClient = drawers.get(z).get(y).get(locationClient);
@@ -169,9 +170,10 @@ public class DrawerDS23 {
             } else {
                 depthInput = String.valueOf(depth);
             }
+
             uprights = new ArrayList<>(List.of(String.valueOf(2),
                     "", "", "",
-                    checkNumber(sub(depthInput, "0.25")), "D", "x",
+                    checkNumber(depthInput), "D", "x",
                     drawerHeight, "H", "Upright/WH",
                     drawerType,
                     drawerClient,

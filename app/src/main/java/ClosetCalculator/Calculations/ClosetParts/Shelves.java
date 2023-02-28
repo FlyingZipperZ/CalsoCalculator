@@ -28,27 +28,27 @@ public class Shelves {
 
         newList.add(new ArrayList<>(List.of(
                 shelvesList.get(0),
-                shelvesList.get(3), "D", "x",  sub8thInch(shelvesList.get(1)), "W", "",
+                sub8thInch(shelvesList.get(3)), "D", "x",  shelvesList.get(1), "W", "",
                 "", "", "",
                 shelvesList.get(4), shelvesList.get(7), shelvesList.get(8))));
 
         if (Objects.equals(String.valueOf(shelvesList.get(10)), "true")) {
             // ArrayList that holds bottom data if needed
             ArrayList<String> bottomList = new ArrayList<>(List.of(
-                    shelvesList.get(0),
+                    "1",
                     shelvesList.get(3), "D","x", shelvesList.get(1), "W", "",
                     "", "", "",
-                    "t", shelvesList.get(7), shelvesList.get(8)));
+                    "t", shelvesList.get(7), "1 euro"));
             newList.add(bottomList);
         }
 
         if (Objects.equals(String.valueOf(shelvesList.get(11)), "true")) {
             // ArrayList that holds bottom data if needed
             ArrayList<String> bottomList = new ArrayList<>(List.of(
-                    shelvesList.get(0),
+                    "1",
                     shelvesList.get(3), "D","x", shelvesList.get(1), "W", "",
                     "", "", "",
-                    "bot", shelvesList.get(7), shelvesList.get(8)));
+                    "bot", shelvesList.get(7), ""));
             newList.add(bottomList);
         }
 

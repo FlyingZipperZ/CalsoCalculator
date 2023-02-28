@@ -9,6 +9,8 @@ import java.util.*;
 import static ClosetCalculator.Calculations.ClosetParts.Bottoms.bottoms;
 import static ClosetCalculator.Calculations.ClosetParts.Filler.createFiller;
 import static ClosetCalculator.Calculations.ClosetParts.Rods.calcRods;
+import static ClosetCalculator.Calculations.DrawerUnits.DS.D32Cab.createD32;
+import static ClosetCalculator.Calculations.DrawerUnits.DS.DS32Drawer.createDS32;
 import static ClosetCalculator.Calculations.DrawerUnits.DrawerDS23.createDS23;
 import static ClosetCalculator.Calculations.DrawerUnits.DrawerDS24.createDS24;
 import static ClosetCalculator.Calculations.DrawerUnits.FX.DrawerFX23.createFX23;
@@ -30,8 +32,10 @@ public class CalculateClosets {
         System.out.println("Closets Are being calculated\n");
         Vector<Vector> data = dtm.getDataVector();
         ArrayList<ArrayList<String>> list = new ArrayList<>();
-        ArrayList<ArrayList<String>> drawerListds23 = new ArrayList<>();
-        ArrayList<ArrayList<String>> drawerListds24 = new ArrayList<>();
+        ArrayList<ArrayList<String>> drawerListD32 = new ArrayList<>();
+        ArrayList<ArrayList<String>> drawerListDS32 = new ArrayList<>();
+        ArrayList<ArrayList<String>> drawerListDS23 = new ArrayList<>();
+        ArrayList<ArrayList<String>> drawerListDS24 = new ArrayList<>();
         ArrayList<ArrayList<String>> drawerList = new ArrayList<>();
         ArrayList<ArrayList<String>> rodsList = new ArrayList<>();
         ArrayList<ArrayList<String>> filler = new ArrayList<>();
@@ -51,11 +55,17 @@ public class CalculateClosets {
                 case "t":
                     list.add(tops(datum));
                     break;
+                case "d32":
+                    drawerListD32.addAll(createD32(datum));
+                    break;
+                case "ds32":
+                    drawerListDS32.addAll(createDS32(datum));
+                    break;
                 case "ds23":
-                    drawerListds23.add(new ArrayList<String>(datum.stream().toList()));
+                    drawerListDS23.add(new ArrayList<String>(datum.stream().toList()));
                     break;
                 case "ds24":
-                    drawerListds24.add(new ArrayList<String>(datum.stream().toList()));
+                    drawerListDS24.add(new ArrayList<String>(datum.stream().toList()));
                     break;
                 case "fx23":
                     drawerList.addAll(createFX23(datum));
@@ -82,19 +92,40 @@ public class CalculateClosets {
         }
 
         // Sorts list of parts by their width
+        sortReversed(4, list);
+
+        // Sorts list of parts by their width
         sortReversed(1, list);
 
-        if (!drawerListds23.isEmpty()) {
-            drawerList.addAll(createDS23(drawerListds23));
+        if (!drawerListDS32.isEmpty()) {
+            drawerList.addAll(drawerListDS32);
+        } else {
+            System.out.println("DS32 Not Populated");
+        }
+
+        if (!drawerListD32.isEmpty()) {
+            drawerList.addAll(drawerListD32);
+        } else {
+            System.out.println("D32 Not Populated");
+        }
+
+        if (!drawerListDS23.isEmpty()) {
+            drawerList.addAll(createDS23(drawerListDS23));
         } else {
             System.out.println("DS23 Not Populated");
         }
 
-        if (!drawerListds24.isEmpty()) {
-            drawerList.addAll(createDS24(drawerListds24));
+        if (!drawerListDS24.isEmpty()) {
+            drawerList.addAll(createDS24(drawerListDS24));
         } else {
             System.out.println("DS24 Not Populated");
         }
+
+        for (int i = 0; i < drawerList.size(); i++){
+            System.out.println(drawerList.get(i));
+        }
+
+        System.out.println();
 
         // Sorts drawerList by width
         sortReversed(1, drawerList);

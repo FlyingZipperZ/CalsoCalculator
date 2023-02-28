@@ -6,7 +6,7 @@ import java.util.Vector;
 
 import static ClosetCalculator.Calculations.CheckNum.checkNumber;
 import static ClosetCalculator.Calculations.DrawerUnits.AddShelve.addShelves;
-import static ClosetCalculator.Calculations.DrawerUnits.Kar.DrawerKarBox.*;
+import static ClosetCalculator.Calculations.DrawerUnits.FX.DrawerFXBox.*;
 import static ClosetCalculator.Calculations.SubtractFromString.sub;
 
 public class DrawerFX23 {
@@ -42,7 +42,7 @@ public class DrawerFX23 {
         String noShel = drawers.get(6);
         String client = drawers.get(7);
         String notes = drawers.get(8);
-        String color = drawers.get(9);
+//        String color = drawers.get(9);
 //        String topOption = drawers.get(10);
 //        String botOption = drawers.get(11);
 

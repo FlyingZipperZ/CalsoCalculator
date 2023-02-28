@@ -14,53 +14,27 @@ public class Table {
      */
     public static JTable getJTable(DefaultTableModel dtm, String[] header) {
 
-        Object [] defaultData1 = {"7","","90.5", "15.875", "u", "", "",
-                "", "Left/Vernieri", "CNC", "White"};
-
-        Object[] defaultData2 = {"3","","80 1/2", "15 7/8", "u", "", "",
-                "", "Right/Vernieri", "CNC", "White"};
-
-        Object[] defaultData3 = {"1","65 7/8","", "15 7/8", "t", "", "",
-                "", "Right/Vernieri", "", "White"};
-
-        Object[] defaultData4 = {"1","40 15/16","", "12", "s", "1",
+        Object[] defaultData = {"1","30 15/16","", "12", "s", "1",
                 "", "Right/Vernieri", "", "White", false, true};
 
-        Object[] defaultData5 = {"1","40 15/16","", "12", "fx23", "",
-                "", "Right/Vernieri", "", "White", false, true};
+//        Object[] defaultData1 = {"1","40 15/16","", "12", "fx23", "",
+//                "", "Right/Vernieri", "", "White", false, true};
 
-        Object[] defaultData6 = {"1","24","6.25", "15.875", "ds23", "", "",
-                "", "Master/Vernieri", "", "White"};
-
-        Object[] defaultData7 = {"2","24","8 3/4", "16", "ds23", "", "",
-                "", "Test/Vernieri", "", "White"};
-
-        Object[] defaultData8 = {"2","24","7 1/2", "16", "ds23", "", "",
-                "", "Test/Vernieri", "", "White"};
-
-        Object[] defaultData9 = {"2","23","6 1/4", "16", "ds23", "", "",
-                "", "Test/Vernieri", "", "White"};
-
-        Object[] defaultData10 = {"2","24","5", "16", "ds23", "", "",
-                "", "Test/Vernieri", "", "White"};
-
-        Object[] defaultData11 = {"2","24","10", "16", "ds23", "", "",
-                "", "Test/Vernieri", "", "White"};
-
-        Object[] defaultData12 = {"2","23","8 3/4", "16", "ds23", "", "",
-                "", "Test/Vernieri", "", "White"};
-
-        Object[] defaultData13 = {"2","23","7 1/2", "16", "ds23", "", "",
-                "", "Test/Vernieri", "", "White"};
-
-        Object[] defaultData14 = {"2","24","6 1/4", "16", "ds23", "", "",
-                "", "Test/Vernieri", "", "White"};
-
-        Object[] defaultData15 = {"2","23","5", "16", "ds23", "", "",
-                "", "Test/Vernieri", "", "White"};
-
-        Object[] defaultData16 = {"1","24","6.25", "15 7/8", "ds23", "",
+        Object[] defaultData2 = {"3","24","7.5", "15 7/8", "ds24", "",
                 "", "Right/Vernieri", "", "White", false, false};
+
+        Object[] defaultData3 = {"2","75","", "15 7/8", "t", "",
+                "", "Right/Vernieri", "", "White", false, false};
+
+        Object[] defaultData4 = {"1","24","30", "15 7/8", "d32", "",
+                "", "Right/Vernieri", "", "White", false, false};
+
+        Object[] defaultData5 = {"1","24","8.75", "15 7/8", "ds32", "",
+                "", "Right/Vernieri", "", "White", false, false};
+
+        Object[] defaultData6 = {"1","40 15/16","", "12", "t", "",
+                "", "Right/Vernieri", "", "White", false, false};
+
         JTable jTable = new JTable(dtm) {
             /*@Override
             public Class getColumnClass(int column) {
@@ -79,7 +53,6 @@ public class Table {
                     case 7:
                     case 8:
                     case 9:
-//                    case 10:
                         return String.class;
                     default:
                         return Boolean.class;
@@ -91,22 +64,13 @@ public class Table {
 
         dtm.setColumnIdentifiers(header);
 //        jTable.setModel(dtm);
+//        dtm.addRow(defaultData);
 //        dtm.addRow(defaultData1);
 //        dtm.addRow(defaultData2);
 //        dtm.addRow(defaultData3);
 //        dtm.addRow(defaultData4);
 //        dtm.addRow(defaultData5);
 //        dtm.addRow(defaultData6);
-//        dtm.addRow(defaultData7);
-//        dtm.addRow(defaultData8);
-//        dtm.addRow(defaultData9);
-//        dtm.addRow(defaultData10);
-//        dtm.addRow(defaultData11);
-//        dtm.addRow(defaultData12);
-//        dtm.addRow(defaultData13);
-//        dtm.addRow(defaultData14);
-//        dtm.addRow(defaultData15);
-//        dtm.addRow(defaultData16);
         jTable.getTableHeader().setOpaque(false);
         jTable.getTableHeader().setBackground(Color.ORANGE);
 

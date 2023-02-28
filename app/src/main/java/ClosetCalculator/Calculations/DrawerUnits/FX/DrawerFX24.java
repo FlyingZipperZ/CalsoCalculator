@@ -7,7 +7,7 @@ import java.util.Vector;
 import static ClosetCalculator.Calculations.AddToString.add;
 import static ClosetCalculator.Calculations.CheckNum.checkNumber;
 import static ClosetCalculator.Calculations.DrawerUnits.AddShelve.addShelves;
-import static ClosetCalculator.Calculations.DrawerUnits.Kar.DrawerKarBox.*;
+import static ClosetCalculator.Calculations.DrawerUnits.FX.DrawerFXBox.*;
 import static ClosetCalculator.Calculations.SubtractFromString.sub;
 
 public class DrawerFX24 {
