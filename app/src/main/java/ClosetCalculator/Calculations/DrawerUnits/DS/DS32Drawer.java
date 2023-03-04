@@ -22,7 +22,7 @@ public class DS32Drawer {
 //        String noShel = drawerBox.get(6);
         String client = drawerBox.get(7);
         String notes = drawerBox.get(8);
-//        String color = drawerBox.get(9);
+        String color = drawerBox.get(9);
 //        String topOption = drawers.get(10);
 //        String botOption = drawers.get(11);
 
@@ -31,7 +31,7 @@ public class DS32Drawer {
                 String.valueOf(numberParts),
                 heightDrawer, "H","x", widthDrawer, "W", "",
                 "", "", "Face",
-                type, client, notes));
+                type, client, notes, color));
 
         /**
          *  Drawer boxes
@@ -45,7 +45,7 @@ public class DS32Drawer {
                 boxHeight, "H", "x", boxWidth, "W",
                 "", "", "",
                 "Drawer F&B",
-                type, client, notes));
+                type, client, notes, "White"));
 
         // Sides
         ArrayList<String> sides = new ArrayList<>(List.of(
@@ -53,7 +53,7 @@ public class DS32Drawer {
                 boxHeight, "H", "x", boxDepth, "W",
                 "", "", "",
                 "Drawer Sides",
-                type, client, notes));
+                type, client, notes, "White"));
 
         boxes.add(face);
         boxes.add(frontAndBack);

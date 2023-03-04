@@ -28,6 +28,6 @@ public class AddShelve {
                 noShel,
                 shelvesList.get(3), "D", "x",  sub8thInch(shelvesList.get(1)), "W", "",
                 "", "", "",
-                "s", shelvesList.get(8), shelvesList.get(9)));
+                "s", shelvesList.get(7), shelvesList.get(8)));
     }
 }

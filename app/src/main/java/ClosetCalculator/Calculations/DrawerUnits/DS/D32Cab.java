@@ -25,7 +25,7 @@ public class D32Cab {
 //        String noShel = drawer.get(6);
         String client = drawer.get(7);
         String notes = drawer.get(8);
-//        String color = drawer.get(9);
+        String color = drawer.get(9);
 //        String topOption = drawers.get(10);
 //        String botOption = drawers.get(11);
 
@@ -36,14 +36,14 @@ public class D32Cab {
                 String.valueOf(partMultiplier),
                 depthDrawer, "D","x", widthDrawer, "W", "Top",
                 "", "", "",
-                type, client, notes));
+                type, client, notes, color));
 
         ArrayList<String> bottom = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier),
                 "", "", "",
                 depthDrawer, "D","x",
                 widthDrawer, "W", "Bottom",
-                type, client, notes));
+                type, client, notes, color));
 
         // Create upright arraylist
         ArrayList<String> upright = new ArrayList<>(List.of(
@@ -51,7 +51,7 @@ public class D32Cab {
                 "", "", "",
                 depthDrawer, "D","x",
                 heightDrawer, "H","Upright/WH",
-                type, client, notes));
+                type, client, notes, "White"));
 
         unit.add(top);
         unit.add(bottom);

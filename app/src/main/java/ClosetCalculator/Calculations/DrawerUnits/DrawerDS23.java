@@ -87,7 +87,7 @@ public class DrawerDS23 {
                 String faceWidth = sub(drawers.get(z).get(0).get(locationWidth), "0.5");
 
                 int partMultiplier = Integer.parseInt(drawers.get(z).get(0).get(locationPart));
-                for (int multi = 0; multi < partMultiplier; multi++) {
+                for (int x = 0; x < partMultiplier; x++) {
                     heightDrawer += convertFractionToDecimal(drawers.get(z).get(y).get(locationHeight));
                     if (!drawers.get(z).get(y).get(locationShelveNumber).isEmpty()) {
                         shelveNumber += Integer.parseInt(drawers.get(z).get(y).get(locationShelveNumber));

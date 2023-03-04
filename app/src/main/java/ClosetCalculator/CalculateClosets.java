@@ -4,6 +4,7 @@ import ClosetCalculator.Calculations.ClosetParts.Shelves;
 import ExcelOut.ExcelOutput;
 
 import javax.swing.table.DefaultTableModel;
+import java.lang.reflect.Array;
 import java.util.*;
 
 import static ClosetCalculator.Calculations.ClosetParts.Bottoms.bottoms;
@@ -11,15 +12,17 @@ import static ClosetCalculator.Calculations.ClosetParts.Filler.createFiller;
 import static ClosetCalculator.Calculations.ClosetParts.Rods.calcRods;
 import static ClosetCalculator.Calculations.DrawerUnits.DS.D32Cab.createD32;
 import static ClosetCalculator.Calculations.DrawerUnits.DS.DS32Drawer.createDS32;
-import static ClosetCalculator.Calculations.DrawerUnits.DrawerDS23.createDS23;
-import static ClosetCalculator.Calculations.DrawerUnits.DrawerDS24.createDS24;
 import static ClosetCalculator.Calculations.DrawerUnits.FX.DrawerFX23.createFX23;
 import static ClosetCalculator.Calculations.DrawerUnits.FX.DrawerFX24.createFX24;
 import static ClosetCalculator.Calculations.DrawerUnits.Kar.DrawerKar23.createKar23;
 import static ClosetCalculator.Calculations.DrawerUnits.Kar.DrawerKar24.createKar24;
 import static ClosetCalculator.Calculations.ClosetParts.Tops.tops;
 import static ClosetCalculator.Calculations.ClosetParts.UpRight.calcUpRight;
+import static ClosetCalculator.Calculations.DrawerUnits.Vas.Vas23.createVas23;
+import static ClosetCalculator.Calculations.DrawerUnits.Vas.Vas24.createVas24;
+import static ClosetCalculator.ColorMatch.getNumberOfColors;
 import static ClosetCalculator.SortFunctions.sortReversed;
+import static ClosetCalculator.SortFunctions.sortReversed2d;
 
 public class CalculateClosets {
 
@@ -34,8 +37,6 @@ public class CalculateClosets {
         ArrayList<ArrayList<String>> list = new ArrayList<>();
         ArrayList<ArrayList<String>> drawerListD32 = new ArrayList<>();
         ArrayList<ArrayList<String>> drawerListDS32 = new ArrayList<>();
-        ArrayList<ArrayList<String>> drawerListDS23 = new ArrayList<>();
-        ArrayList<ArrayList<String>> drawerListDS24 = new ArrayList<>();
         ArrayList<ArrayList<String>> drawerList = new ArrayList<>();
         ArrayList<ArrayList<String>> rodsList = new ArrayList<>();
         ArrayList<ArrayList<String>> filler = new ArrayList<>();
@@ -44,7 +45,6 @@ public class CalculateClosets {
             switch ((String) datum.get(4)) {
                 case "u":
                     list.add(calcUpRight(datum));
-
                     break;
                 case "s":
                     list.addAll(Shelves.calcShelves(datum));
@@ -56,16 +56,10 @@ public class CalculateClosets {
                     list.add(tops(datum));
                     break;
                 case "d32":
-                    drawerListD32.addAll(createD32(datum));
+                    drawerList.addAll(createD32(datum));
                     break;
                 case "ds32":
-                    drawerListDS32.addAll(createDS32(datum));
-                    break;
-                case "ds23":
-                    drawerListDS23.add(new ArrayList<String>(datum.stream().toList()));
-                    break;
-                case "ds24":
-                    drawerListDS24.add(new ArrayList<String>(datum.stream().toList()));
+                    drawerList.addAll(createDS32(datum));
                     break;
                 case "fx23":
                     drawerList.addAll(createFX23(datum));
@@ -79,6 +73,12 @@ public class CalculateClosets {
                 case "kar24":
                     drawerList.addAll(createKar24(datum));
                     break;
+                case "vas23":
+                    drawerList.addAll(createVas23(datum));
+                    break;
+                case "vas24":
+                    drawerList.addAll(createVas24(datum));
+                    break;
                 case "f":
                     filler.add(createFiller(datum));
                     break;
@@ -91,54 +91,53 @@ public class CalculateClosets {
             }
         }
 
-        // Sorts list of parts by their width
-        sortReversed(4, list);
+        ArrayList<ArrayList<ArrayList<String>>> unitColor = new ArrayList<>();
+        ArrayList<ArrayList<String>> masterList = new ArrayList<>();
+        masterList.addAll(0, list);
+        masterList.addAll(list.size(), drawerList);
+        masterList.addAll(list.size() + drawerList.size(), filler);
 
-        // Sorts list of parts by their width
-        sortReversed(1, list);
+        masterList.sort(new Comparator<ArrayList<String>>() {
+            @Override
+            public int compare(ArrayList<String> o1, ArrayList<String> o2) {
+                return o1.get(13).compareTo(o2.get(13));
+            }
+        });
 
-        if (!drawerListDS32.isEmpty()) {
-            drawerList.addAll(drawerListDS32);
-        } else {
-            System.out.println("DS32 Not Populated");
+        int colorNum = getNumberOfColors(masterList);
+
+        int arrayY = 0;
+        String color = masterList.get(0).get(13);
+        int masterListY = 0;
+
+        unitColor.add(new ArrayList<ArrayList<String>>());
+        // Add different units to different axis
+        for (int arrayX = 0; arrayX < colorNum; arrayX++) {
+//            System.out.println("*************************** Color: " + color + " ***************************");
+            if (masterList.size() > arrayX+1) {
+                if (!Objects.equals(masterList.get(arrayX).get(1), masterList.get(arrayX + 1).get(1))) {
+                    arrayY = 0;
+                    unitColor.add(new ArrayList<ArrayList<String>>()); // runs as many times as the colorNum allows
+                }
+            }
+            while (Objects.equals(color, masterList.get(masterListY).get(13))) {
+                unitColor.get(arrayX).add(new ArrayList<>());
+                unitColor.get(arrayX).set(arrayY, masterList.get(masterListY));
+                if (masterListY < masterList.size()-1) {
+                    masterListY++;
+                    arrayY++;
+                } else {
+                    break;
+                }
+            }
+            color = masterList.get(masterListY).get(13);
         }
 
-        if (!drawerListD32.isEmpty()) {
-            drawerList.addAll(drawerListD32);
-        } else {
-            System.out.println("D32 Not Populated");
-        }
-
-        if (!drawerListDS23.isEmpty()) {
-            drawerList.addAll(createDS23(drawerListDS23));
-        } else {
-            System.out.println("DS23 Not Populated");
-        }
-
-        if (!drawerListDS24.isEmpty()) {
-            drawerList.addAll(createDS24(drawerListDS24));
-        } else {
-            System.out.println("DS24 Not Populated");
-        }
-
-        for (int i = 0; i < drawerList.size(); i++){
-            System.out.println(drawerList.get(i));
-        }
-
-        System.out.println();
-
-        // Sorts drawerList by width
-        sortReversed(1, drawerList);
-
-        // Sorts drawerList by height
+        // Sorts rods by width
         sortReversed(7, rodsList);
 
-        for (int i = 0; i < drawerList.size(); i++){
-            System.out.println(drawerList.get(i));
-        }
-
         // Calls ExcelOutput to create the Excel file
-        ExcelOutput.createExcel(list, drawerList, rodsList, filler);
+        ExcelOutput.createExcel(unitColor, rodsList);
 
         System.out.println("\nList Run Successful");
     }

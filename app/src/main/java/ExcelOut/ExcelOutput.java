@@ -1,7 +1,6 @@
 package ExcelOut;
 
 import ClosetCalculator.Frames.SaveFile;
-import org.apache.poi.ss.usermodel.CellReferenceType;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -11,11 +10,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ExcelOutput {
+import static ClosetCalculator.SortFunctions.sortReversed2d;
+import static ExcelOut.ColorRow.createColorRow;
+import static ExcelOut.DimensionCells.setClosetRows;
+import static ExcelOut.DimensionCells.setRods;
 
-    // Creates an Excel from the data input by the user
-    public static void createExcel(ArrayList<ArrayList<String>> list, ArrayList<ArrayList<String>> drawers,
-                                   ArrayList<ArrayList<String>> rods, ArrayList<ArrayList<String>> fillers) {
+public class ExcelOutput {
+    /**
+     * Calls of this will export an Excel file which has different colors and all the parts
+     * @param unitColor 3d Array that contains all the colors and all the parts for the list
+     * @param rods list of rods
+     */
+    public static void createExcel(ArrayList<ArrayList<ArrayList<String>>> unitColor, ArrayList<ArrayList<String>> rods) {
         XSSFWorkbook workbook = new XSSFWorkbook();
 
         XSSFSheet sheet = workbook.createSheet();
@@ -40,30 +46,27 @@ public class ExcelOutput {
         colorFont.setFontHeight(14);
         restOfSheet.setFont(colorFont);
 
+        // Header only
         int rowNumber = 0;
         Header.setFirstRow(workbook, sheet, rowNumber++);
         rowNumber++;
 
-        for (ArrayList<String> strings : list) {
-            DimensionCells.setClosetRows(workbook, sheet, rowNumber++, strings);
+        // pulls info from the 3d array and puts them in the list
+        for (int arrayX = 0; arrayX < unitColor.size()-1; arrayX++) {
+            sortReversed2d(unitColor.get(arrayX));
+            for (int arrayY = 0; arrayY < unitColor.get(arrayX).size(); arrayY++) {
+                setClosetRows(workbook, sheet, rowNumber++, unitColor.get(arrayX).get(arrayY));
+            }
+            System.out.println("Arrrayx: " + arrayX);
+            rowNumber++;
+            String color = unitColor.get(arrayX).get(0).get(13);
+            createColorRow(workbook, sheet, rowNumber++, color);
+            rowNumber++;
         }
-        for (ArrayList<String> drawer : drawers) {
-            DimensionCells.setDrawersRows(workbook, sheet, rowNumber++, drawer);
-        }
-
-        for (ArrayList<String> filler: fillers) {
-            DimensionCells.setFiller(workbook, sheet, rowNumber++, filler);
-        }
-
-        rowNumber++;
 
         for (ArrayList<String> rod : rods) {
-            DimensionCells.setRods(workbook, sheet, rowNumber++, rod);
+            setRods(workbook, sheet, rowNumber++, rod);
         }
-
-        rowNumber++;
-
-        ColorRow.createRow(workbook, sheet, rowNumber);
 
         String location = SaveFile.createSavePopUp();
 

@@ -70,20 +70,21 @@ public class DrawerKar23 {
                 type, client, notes));
 
         // Math when weird number
-        String faceWidth = sub(widthDrawer, "0.5");
+        String faceWidth = checkNumber(sub(widthDrawer, "0.5"));
 
         //  ArrayList<ArrayList<String>> created to add for output
         ArrayList<ArrayList<String>> drawerUnit = new ArrayList<>();
 
         drawerUnit.add(top);
-        drawerUnit.addAll(calcFace(partMultiplier, faceWidth, type, client, notes));
+
+        drawerUnit.addAll(calcFaceKAR(partMultiplier, faceWidth, type, client, notes, color));
         /**
          *  Drawer boxes
          */
-        drawerUnit.addAll(calcBox(partMultiplier, widthDrawer, type, client, notes, depthDrawer));
-        drawerUnit.add(bottom);
+        drawerUnit.addAll(calcBoxKAR(partMultiplier, widthDrawer, type, client, notes, depthDrawer));
         drawerUnit.add(upright);
-        drawerUnit.add(calcBottom(partMultiplier, depthDrawer, widthDrawer, type, client, notes));
+        drawerUnit.add(bottom);
+        drawerUnit.add(calcBottomKAR(partMultiplier, depthDrawer, widthDrawer, type, client, notes));
 
         if (!noShel.isEmpty()) {
             drawerUnit.add(addShelves(vector));

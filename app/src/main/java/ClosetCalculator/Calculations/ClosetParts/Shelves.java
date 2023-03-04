@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Vector;
 
+import static ClosetCalculator.Calculations.CheckNum.checkNumber;
 import static ClosetCalculator.Calculations.SubtractFromString.sub8thInch;
 
 public class Shelves {
@@ -26,29 +27,42 @@ public class Shelves {
         // ArrayList that adds all elements and gets pushed to the master list
         ArrayList<ArrayList<String>> newList = new ArrayList<>();
 
-        newList.add(new ArrayList<>(List.of(
-                shelvesList.get(0),
-                sub8thInch(shelvesList.get(3)), "D", "x",  shelvesList.get(1), "W", "",
-                "", "", "",
-                shelvesList.get(4), shelvesList.get(7), shelvesList.get(8))));
+        String numberParts = shelvesList.get(0);
+        String widthDrawer = checkNumber(shelvesList.get(1));
+//        String heightDrawer = checkNumber(drawers.get(2));
+        String depthDrawer = checkNumber(shelvesList.get(3));
+        String type = shelvesList.get(4);
+//        String rod = drawers.get(5);
+//        String noShel = shelvesList.get(6);
+        String client = shelvesList.get(7);
+        String notes = shelvesList.get(8);
+        String color = shelvesList.get(9);
+        boolean topOption = (boolean) vector.get(10);
+        boolean botOption = (boolean) vector.get(11);
 
-        if (Objects.equals(String.valueOf(shelvesList.get(10)), "true")) {
-            // ArrayList that holds bottom data if needed
+        newList.add(new ArrayList<>(List.of(
+                numberParts,
+                sub8thInch(depthDrawer), "D", "x",  widthDrawer, "W", "",
+                "", "", "",
+                type, client, notes, color)));
+
+        if (Objects.equals(topOption, true)) {
+            // ArrayList that holds top data if needed
             ArrayList<String> bottomList = new ArrayList<>(List.of(
                     "1",
-                    shelvesList.get(3), "D","x", shelvesList.get(1), "W", "",
+                    depthDrawer, "D","x", widthDrawer, "W", "",
                     "", "", "",
-                    "t", shelvesList.get(7), "1 euro"));
+                    "t", client, "1 euro", color));
             newList.add(bottomList);
         }
 
-        if (Objects.equals(String.valueOf(shelvesList.get(11)), "true")) {
+        if (Objects.equals(botOption, true)) {
             // ArrayList that holds bottom data if needed
             ArrayList<String> bottomList = new ArrayList<>(List.of(
                     "1",
-                    shelvesList.get(3), "D","x", shelvesList.get(1), "W", "",
+                    depthDrawer, "D","x", widthDrawer, "W", "",
                     "", "", "",
-                    "bot", shelvesList.get(7), ""));
+                    "bot", client, "", color));
             newList.add(bottomList);
         }
 

@@ -1,19 +1,15 @@
 package ExcelOut;
 
-import ClosetCalculator.Calculations.FractionToDecimal;
-import ClosetCalculator.Panels.InputsLabelTxt;
 import org.apache.poi.ss.usermodel.DataFormat;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.xssf.usermodel.*;
-
-import java.util.Objects;
 
 import static ClosetCalculator.Components.JtextField.colorTxt;
 
 public class ColorRow {
 
     // Gets color from colorTxt and puts it at the bottom of the file
-    public static void createRow(XSSFWorkbook workbook, XSSFSheet sheet, int rowNumber) {
+    public static void createColorRow(XSSFWorkbook workbook, XSSFSheet sheet, int rowNumber, String color) {
         // Create excel style
         XSSFCellStyle rowStyle = workbook.createCellStyle();
 
@@ -24,7 +20,7 @@ public class ColorRow {
         rowStyle.setFont(font);
 
         DataFormat format = workbook.createDataFormat();
-        rowStyle.setDataFormat(format.getFormat("# ??/??"));
+//        rowStyle.setDataFormat(format.getFormat("# ??/??"));
 
         rowStyle.setAlignment(HorizontalAlignment.CENTER);
 
@@ -34,6 +30,6 @@ public class ColorRow {
 
         cells[1] = rows.createCell(1);
         cells[1].setCellStyle(rowStyle);
-        cells[1].setCellValue(colorTxt.getText());
+        cells[1].setCellValue(color);
     }
 }

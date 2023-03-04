@@ -42,7 +42,7 @@ public class DrawerFX23 {
         String noShel = drawers.get(6);
         String client = drawers.get(7);
         String notes = drawers.get(8);
-//        String color = drawers.get(9);
+        String color = drawers.get(9);
 //        String topOption = drawers.get(10);
 //        String botOption = drawers.get(11);
 
@@ -53,13 +53,13 @@ public class DrawerFX23 {
                 String.valueOf(partMultiplier),
                 depthDrawer, "D","x", widthDrawer, "W", "",
                 "", "", "Top",
-                type, client, notes));
+                type, client, color, color));
 
         ArrayList<String> bottom = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier), "", "", "",
                 sub(depthDrawer, "0.125"), "D","x", widthDrawer, "W",
                 "Bottom",
-                type, client, notes));
+                type, client, color, color));
 
         // Create upright arraylist
         ArrayList<String> upright = new ArrayList<>(List.of(
@@ -67,23 +67,23 @@ public class DrawerFX23 {
                 "", "", "",
                 depthDrawer, "D","x",
                 "37 1/2", "H","Upright/WH",
-                type, client, notes));
+                type, client, color, color));
 
         // Math when weird number
-        String faceWidth = sub(widthDrawer, "0.5");
+        String faceWidth = checkNumber(sub(widthDrawer, "0.5"));
 
         //  ArrayList<ArrayList<String>> created to add for output
         ArrayList<ArrayList<String>> drawerUnit = new ArrayList<>();
 
         drawerUnit.add(top);
-        drawerUnit.addAll(calcFace(partMultiplier, faceWidth, type, client, notes));
+        drawerUnit.addAll(calcFaceFX(partMultiplier, faceWidth, type, client, color));
         /**
          *  Drawer boxes
          */
-        drawerUnit.addAll(calcBox(partMultiplier, widthDrawer, type, client, notes, depthDrawer));
-        drawerUnit.add(bottom);
+        drawerUnit.addAll(calcBoxFX(partMultiplier, widthDrawer, type, client, color, depthDrawer));
         drawerUnit.add(upright);
-        drawerUnit.add(calcBottom(partMultiplier, depthDrawer, widthDrawer, type, client, notes));
+        drawerUnit.add(bottom);
+        drawerUnit.add(calcBottomFX(partMultiplier, depthDrawer, widthDrawer, type, client, color));
 
 
         if (!noShel.isEmpty()) {

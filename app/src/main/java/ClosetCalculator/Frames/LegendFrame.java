@@ -17,12 +17,15 @@ public class LegendFrame extends JFrame {
                 {"b", "Base"},
                 {"t", "Top"},
                 {"f", "Filler"},
-                {"ds23", "Drawer Cabinet"},
-                {"ds24", "Drawer Cabinet"},
+                {"d32", "Drawer Cabinet"},
+                {"ds32", "Drawer Box"},
                 {"fx23", "Full Extension 23.5"},
                 {"fx24", "Full Extension 24.5"},
                 {"kar23", "Full Extension 23.5"},
-                {"kar24", "Full Extension 24.5"},};
+                {"kar24", "Full Extension 24.5"},
+                {"vas23", "Full Extension 23.5"},
+                {"vas24", "Full Extension 24.5"},};
+
         JTable jTable = new JTable(data, header){
             public Component prepareRenderer
                     (TableCellRenderer renderer, int Index_row, int Index_col) {

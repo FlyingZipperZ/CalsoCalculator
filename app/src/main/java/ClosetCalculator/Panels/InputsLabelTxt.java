@@ -32,11 +32,14 @@ public class InputsLabelTxt {
         constraints.insets = new Insets(5, 0, 5, 0);
         constraints.anchor = GridBagConstraints.WEST;
 
+
+
         // add components to the panel
         closetInputComponents(constraints, panel, client, clientTxt,0,gridy++);
         closetInputComponents(constraints, panel, room, roomTxt,0,gridy++);
         closetInputComponents(constraints, panel, color, colorTxt,0,gridy++);
         closetInputComponents(constraints, panel, rodColor, colorRodTxt,0,gridy++);
+        rodModTxt.setText("3/16");
         closetInputComponents(constraints, panel, rodMod, rodModTxt,0,gridy++);
         closetInputComponents(constraints, panel, numPiece, numPiecesTxt,0,gridy++);
         closetInputComponents(constraints, panel, width, widthTxt,0,gridy++);

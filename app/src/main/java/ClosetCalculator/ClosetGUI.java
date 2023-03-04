@@ -106,7 +106,7 @@ public class ClosetGUI extends JFrame {
 
                         InputsLabelTxt.addToTable(jTable, dtm);
                     }
-                } else if (Objects.equals(type, "ds23") || Objects.equals(type, "ds24")) {
+                } else if (Objects.equals(type, "ds32") || Objects.equals(type, "d32")) {
                     if (widthTxt.getText().isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Width is empty");
                     } else if (heightTxt.getText().isEmpty()) {
@@ -119,7 +119,9 @@ public class ClosetGUI extends JFrame {
                 } else if (Objects.equals(type, "fx23") ||
                         Objects.equals(type, "fx24") ||
                         Objects.equals(type, "kar23") ||
-                        Objects.equals(type, "kar24")) {
+                        Objects.equals(type, "kar24") ||
+                        Objects.equals(type, "vas23") ||
+                        Objects.equals(type, "vas24")) {
                     if (widthTxt.getText().isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Width is empty");
                     } else if (depthTxt.getText().isEmpty()) {
