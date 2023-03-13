@@ -16,7 +16,6 @@ public class DimensionCells {
     public static void setClosetRows(XSSFWorkbook workbook, XSSFSheet sheet, int rowNumber, ArrayList<String> list) {
         // Create excel style
         XSSFCellStyle rowStyle = workbook.createCellStyle();
-        XSSFCellStyle drawerRowStyle = workbook.createCellStyle();
 
         // Creates a font for the excel
         XSSFFont uprightFont = workbook.createFont();
