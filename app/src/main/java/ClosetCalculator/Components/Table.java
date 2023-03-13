@@ -14,26 +14,71 @@ public class Table {
      */
     public static JTable getJTable(DefaultTableModel dtm, String[] header) {
 
-        Object[] defaultData = {"1","30 15/16","", "12", "s", "1",
-                "", "Right/Vernieri", "", "White", false, true};
+        Object[] defaultData = {"3", "", "84", "15.875", "u", "",
+                "", "BDRM/1215 Serif", "", "White", false, true};
 
-        Object[] defaultData1 = {"1","30 15/16","", "12", "s", "1",
-                "", "Right/Vernieri", "", "Black", false, true};
+        Object[] defaultData1 = {"1", "43.875","", "15.875", "b", "",
+                "", "BDRM/1215 Serif", "", "White", false, true};
 
-        Object[] defaultData2 = {"1","24","", "15 7/8", "s", "",
-                "", "Right/Vernieri", "", "Orange", false, false};
+        Object[] defaultData2 = {"1", "20", "", "15 7/8", "t", "",
+                "", "BDRM/1215 Serif", "", "White", false, true};
 
-        Object[] defaultData3 = {"1","24","", "15 7/8", "fx23", "",
-                "", "Right/Vernieri", "", "Black", false, false};
+        Object[] defaultData3 = {"1", "27.875", "", "15 7/8", "t", "2",
+                "", "BDRM/1215 Serif", "Euro", "White", false, true};
 
-        Object[] defaultData4 = {"1","24","", "15 7/8", "s", "",
-                "", "Right/Vernieri", "", "Latitude North", false, false};
+        Object[] defaultData4 = {"1", "21.875", "", "15 7/8", "s", "2",
+                "", "BDRM/1215 Serif", "fit F Right", "White", false, true};
 
-        Object[] defaultData5 = {"1","24","", "15 7/8", "s", "",
-                "", "Right/Vernieri", "", "Latitude East", false, false};
+        Object[] defaultData5 = {"1", "19.25", "", "16", "kar23", "",
+                "", "BDRM/1215 Serif", "", "White", false, true};
 
-        Object[] defaultData6 = {"1","40 15/16","", "12", "t", "",
-                "", "Right/Vernieri", "", "White", false, false};
+        Object[] defaultData6 = {"4","","84", "15.875", "u", "",
+                "", "Master/1215 Serif", "", "White", false, true};
+
+        Object[] defaultData7 = {"1", "74.125", "", "15.875", "b", "",
+                "", "Master/1215 Serif", "", "White", false, true};
+
+        Object[] defaultData8 = {"1", "28.625", "", "15.875", "t", "",
+                "", "Master/1215 Serif", "Euro", "White", false, true};
+
+        Object[] defaultData9 = {"1", "18", "", "15 7/8", "t", "",
+                "", "Master/1215 Serif", "fit F Right", "White", false, true};
+
+        Object[] defaultData10 = {"1", "24.75", "", "15 7/8", "t", "",
+                "", "Master/1215 Serif", "Euro", "White", false, true};
+
+        Object[] defaultData11 = {"1", "28.625", "", "15 7/8", "s", "2",
+                "", "Master/1215 Serif", "Euro", "White", false, true};
+
+        Object[] defaultData12 = {"1", "18", "", "15 7/8", "s", "1",
+                "", "Master/1215 Serif", "Fit M Left", "White", false, true};
+
+        Object[] defaultData13 = {"1", "24", "", "16", "kar23", "",
+                "", "Master/1215 Serif", "", "White", false, true};
+
+        Object[] defaultData14 = {"2", "", "84", "12", "u", "1",
+                "", "Laundry/1215 Serif", "", "White", false, true};
+
+        Object[] defaultData15 = {"1", "54 3/16", "", "12", "u", "",
+                "", "Laundry/1215 Serif", "", "White", false, true};
+
+        Object[] defaultData16 = {"2", "23", "", "12", "s", "1",
+                "", "Laundry/1215 Serif", "", "White", false, true};
+
+        Object[] defaultData17 = {"1", "29 11/16", "", "12", "t", "",
+                "", "Laundry/1215 Serif", "", "White", false, true};
+
+        Object[] defaultData18 = {"1", "29 9/16", "", "2.5", "t", "",
+                "", "Laundry/1215 Serif", "", "White", false, true};
+
+        Object[] defaultData19 = {"1", "11.125", "", "2.5", "t", "",
+                "", "Laundry/1215 Serif", "Fit F Right", "White", false, true};
+
+        Object[] defaultData20 = {"1", "23", "", "2.5", "t", "",
+                "", "Laundry/1215 Serif", "Fit M Left", "White", false, true};
+
+        Object[] defaultData21 = {"3","22", "", "15.875", "s", "1",
+                "", "Walk/Mongs", "Edge 2 sides Left", "White", false, true};
 
         JTable jTable = new JTable(dtm) {
             /*@Override
@@ -70,7 +115,22 @@ public class Table {
         dtm.addRow(defaultData3);
         dtm.addRow(defaultData4);
         dtm.addRow(defaultData5);
-//        dtm.addRow(defaultData6);
+        dtm.addRow(defaultData6);
+        dtm.addRow(defaultData7);
+        dtm.addRow(defaultData8);
+        dtm.addRow(defaultData9);
+        dtm.addRow(defaultData10);
+        dtm.addRow(defaultData11);
+        dtm.addRow(defaultData12);
+        dtm.addRow(defaultData13);
+        dtm.addRow(defaultData14);
+        dtm.addRow(defaultData15);
+        dtm.addRow(defaultData16);
+        dtm.addRow(defaultData17);
+        dtm.addRow(defaultData18);
+        dtm.addRow(defaultData19);
+        dtm.addRow(defaultData20);
+//        dtm.addRow(defaultData21);
         jTable.getTableHeader().setOpaque(false);
         jTable.getTableHeader().setBackground(Color.ORANGE);
 

@@ -13,8 +13,8 @@ public class UpRight {
         ArrayList<String> uprights = new ArrayList<>(vector.stream().toList());
 
         String numberParts = uprights.get(0);
-        String widthDrawer = checkNumber(uprights.get(1));
-//        String heightDrawer = checkNumber(drawers.get(2));
+//        String widthDrawer = checkNumber(uprights.get(1));
+        String heightDrawer = checkNumber(uprights.get(2));
         String depthDrawer = checkNumber(uprights.get(3));
         String type = uprights.get(4);
 //        String rod = drawers.get(5);
@@ -28,8 +28,8 @@ public class UpRight {
         // Create top and bottom arraylist
         return new ArrayList<>(List.of(
                 numberParts,
-                depthDrawer, "D","x", widthDrawer, "W", "",
+                depthDrawer, "D","x", heightDrawer, "W", "",
                 "", "", "",
-                type, client, notes, color));
+                type, client, notes, color, color));
     }
 }

@@ -2,6 +2,7 @@ package ExcelOut;
 
 import ClosetCalculator.Calculations.FractionToDecimal;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.xssf.usermodel.*;
 
 import java.awt.*;
@@ -15,10 +16,11 @@ public class DimensionCells {
     public static void setClosetRows(XSSFWorkbook workbook, XSSFSheet sheet, int rowNumber, ArrayList<String> list) {
         // Create excel style
         XSSFCellStyle rowStyle = workbook.createCellStyle();
+        XSSFCellStyle drawerRowStyle = workbook.createCellStyle();
 
         // Creates a font for the excel
-        XSSFFont font = workbook.createFont();
-        rowStyle.setFont(font);
+        XSSFFont uprightFont = workbook.createFont();
+        rowStyle.setFont(uprightFont);
 
         rowStyle.setAlignment(HorizontalAlignment.CENTER);
 
@@ -40,6 +42,12 @@ public class DimensionCells {
                 rowStyle.setFillForegroundColor(IndexedColors.YELLOW.getIndex());
                 rowStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             }
+
+            if (Objects.equals(list.get(10), "u")) {
+                uprightFont.setBold(true);
+                rowStyle.setFont(uprightFont);
+            }
+
             if (!Objects.equals(list.get(1), "")) {
                 if (i == 0 || i == 1 || i == 4) {
                     cells[i].setCellValue(convertFractionToDecimal(list.get(i)));
@@ -53,6 +61,7 @@ public class DimensionCells {
                     cells[i].setCellValue(list.get(i));
                 }
             }
+
             cells[i].setCellStyle(rowStyle);
         }
     }
@@ -115,7 +124,7 @@ public class DimensionCells {
         XSSFCell[] cells = new XSSFCell[13];
         XSSFRow rows = sheet.createRow(rowNumber);
 
-        for (int i = 0; i < rods.size(); i++) {
+        for (int i = 0; i < 13; i++) {
             cells[i] = rows.createCell(i);
             if (i == 0 || i == 7) {
                 cells[i].setCellStyle(rowStyle);

@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static ClosetCalculator.SortFunctions.sortReversed;
 import static ClosetCalculator.SortFunctions.sortReversed2d;
 import static ExcelOut.ColorRow.createColorRow;
 import static ExcelOut.DimensionCells.setClosetRows;
@@ -57,12 +58,13 @@ public class ExcelOutput {
             for (int arrayY = 0; arrayY < unitColor.get(arrayX).size(); arrayY++) {
                 setClosetRows(workbook, sheet, rowNumber++, unitColor.get(arrayX).get(arrayY));
             }
-            System.out.println("Arrrayx: " + arrayX);
             rowNumber++;
             String color = unitColor.get(arrayX).get(0).get(13);
             createColorRow(workbook, sheet, rowNumber++, color);
             rowNumber++;
         }
+
+        rowNumber++;
 
         for (ArrayList<String> rod : rods) {
             setRods(workbook, sheet, rowNumber++, rod);

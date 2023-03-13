@@ -1,16 +1,16 @@
-package ClosetCalculator.Calculations.DrawerUnits.FX;
+package ClosetCalculator.Calculations.DrawerUnits.Vas;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import static ClosetCalculator.Calculations.AddToString.add;
 import static ClosetCalculator.Calculations.CheckNum.checkNumber;
-import static ClosetCalculator.Calculations.DrawerUnits.AddShelve.addShelves;
 import static ClosetCalculator.Calculations.DrawerUnits.FX.DrawerFXBox.*;
 import static ClosetCalculator.Calculations.SubtractFromString.sub;
 
-public class DrawerFX23 {
-    public static ArrayList<ArrayList<String>> createFX23(Vector vector) {
+public class DrawerVas {
+    public static ArrayList<ArrayList<String>> createVas(Vector vector) {
 
         /**
          * Input
@@ -69,8 +69,13 @@ public class DrawerFX23 {
                 "37 1/2", "H","Upright/WH",
                 type, client, color, color));
 
-        // Math when weird number
-        String faceWidth = checkNumber(sub(widthDrawer, "0.5"));
+        String faceWidth = "";
+        if (type.equals("vas23")) {
+            // Math when weird number
+            faceWidth = checkNumber(sub(widthDrawer, "0.5"));
+        } else if (type.equals("vas24")) {
+            faceWidth = checkNumber(add(widthDrawer, "0.5"));
+        }
 
         //  ArrayList<ArrayList<String>> created to add for output
         ArrayList<ArrayList<String>> drawerUnit = new ArrayList<>();
@@ -87,9 +92,15 @@ public class DrawerFX23 {
 
 
         if (!noShel.isEmpty()) {
-            drawerUnit.add(addShelves(vector));
+            ArrayList<String> shelves = new ArrayList<>(List.of(
+                    String.valueOf(noShel),
+                    depthDrawer, "D", "x", widthDrawer, "W",
+                    "", "", "",
+                    "Shelves", type, client, "", color));
+            drawerUnit.add(shelves);
         }
 
         return drawerUnit;
     }
+
 }

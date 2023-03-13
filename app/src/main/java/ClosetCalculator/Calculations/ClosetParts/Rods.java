@@ -25,7 +25,7 @@ public class Rods {
                 rodsList.get(5),
                 colorRodTxt.getText().trim(), "", "", "",
                 "", "", convertDecimalToFraction(in),"W", "",
-                "r", rodsList.get(7), rodsList.get(8))));
+                "r", rodsList.get(7), "")));
 
         return newList;
     }

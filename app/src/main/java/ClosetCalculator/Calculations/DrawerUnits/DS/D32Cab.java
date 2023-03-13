@@ -22,7 +22,7 @@ public class D32Cab {
         String depthDrawer = checkNumber(drawer.get(3));
         String type = drawer.get(4);
 //        String rod = drawers.get(5);
-//        String noShel = drawer.get(6);
+        String noShel = drawer.get(6);
         String client = drawer.get(7);
         String notes = drawer.get(8);
         String color = drawer.get(9);
@@ -34,13 +34,13 @@ public class D32Cab {
         // Create top and bottom arraylist
         ArrayList<String> top = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier),
-                depthDrawer, "D","x", widthDrawer, "W", "Top",
+                depthDrawer, "D","x", widthDrawer, "W",
                 "", "", "",
-                type, client, notes, color));
+                "Top", type, client, notes, color));
 
         ArrayList<String> bottom = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier),
-                "", "", "",
+                "0", "", "",
                 depthDrawer, "D","x",
                 widthDrawer, "W", "Bottom",
                 type, client, notes, color));
@@ -48,14 +48,25 @@ public class D32Cab {
         // Create upright arraylist
         ArrayList<String> upright = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 2),
-                "", "", "",
+                "0", "", "",
                 depthDrawer, "D","x",
                 heightDrawer, "H","Upright/WH",
-                type, client, notes, "White"));
+                type, client, "CNC-1/4", "White"));
+
+        if (!noShel.isEmpty()) {
+            ArrayList<String> shelves = new ArrayList<>(List.of(
+                    String.valueOf(noShel),
+                    depthDrawer, "D", "x", widthDrawer, "W",
+                    "", "", "",
+                    "Shelves", type, client, "", color));
+            unit.add(shelves);
+        }
 
         unit.add(top);
         unit.add(bottom);
         unit.add(upright);
+
+
 
         return unit;
     }

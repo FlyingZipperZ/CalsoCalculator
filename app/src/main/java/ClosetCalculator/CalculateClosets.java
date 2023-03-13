@@ -1,10 +1,8 @@
 package ClosetCalculator;
 
 import ClosetCalculator.Calculations.ClosetParts.Shelves;
-import ExcelOut.ExcelOutput;
 
 import javax.swing.table.DefaultTableModel;
-import java.lang.reflect.Array;
 import java.util.*;
 
 import static ClosetCalculator.Calculations.ClosetParts.Bottoms.bottoms;
@@ -12,17 +10,14 @@ import static ClosetCalculator.Calculations.ClosetParts.Filler.createFiller;
 import static ClosetCalculator.Calculations.ClosetParts.Rods.calcRods;
 import static ClosetCalculator.Calculations.DrawerUnits.DS.D32Cab.createD32;
 import static ClosetCalculator.Calculations.DrawerUnits.DS.DS32Drawer.createDS32;
-import static ClosetCalculator.Calculations.DrawerUnits.FX.DrawerFX23.createFX23;
-import static ClosetCalculator.Calculations.DrawerUnits.FX.DrawerFX24.createFX24;
-import static ClosetCalculator.Calculations.DrawerUnits.Kar.DrawerKar23.createKar23;
-import static ClosetCalculator.Calculations.DrawerUnits.Kar.DrawerKar24.createKar24;
+import static ClosetCalculator.Calculations.DrawerUnits.FX.DrawerFX.createFX;
+import static ClosetCalculator.Calculations.DrawerUnits.Kar.DrawerKar.createKar;
 import static ClosetCalculator.Calculations.ClosetParts.Tops.tops;
 import static ClosetCalculator.Calculations.ClosetParts.UpRight.calcUpRight;
-import static ClosetCalculator.Calculations.DrawerUnits.Vas.Vas23.createVas23;
-import static ClosetCalculator.Calculations.DrawerUnits.Vas.Vas24.createVas24;
-import static ClosetCalculator.ColorMatch.getNumberOfColors;
+import static ClosetCalculator.Calculations.DrawerUnits.Vas.DrawerVas.createVas;
+import static ClosetCalculator.MasterArray.createMasterArray;
 import static ClosetCalculator.SortFunctions.sortReversed;
-import static ClosetCalculator.SortFunctions.sortReversed2d;
+import static ExcelOut.ExcelOutput.createExcel;
 
 public class CalculateClosets {
 
@@ -35,8 +30,7 @@ public class CalculateClosets {
         System.out.println("Closets Are being calculated\n");
         Vector<Vector> data = dtm.getDataVector();
         ArrayList<ArrayList<String>> list = new ArrayList<>();
-        ArrayList<ArrayList<String>> drawerListD32 = new ArrayList<>();
-        ArrayList<ArrayList<String>> drawerListDS32 = new ArrayList<>();
+        ArrayList<ArrayList<String>> base = new ArrayList<>();
         ArrayList<ArrayList<String>> drawerList = new ArrayList<>();
         ArrayList<ArrayList<String>> rodsList = new ArrayList<>();
         ArrayList<ArrayList<String>> filler = new ArrayList<>();
@@ -62,22 +56,16 @@ public class CalculateClosets {
                     drawerList.addAll(createDS32(datum));
                     break;
                 case "fx23":
-                    drawerList.addAll(createFX23(datum));
-                    break;
                 case "fx24":
-                    drawerList.addAll(createFX24(datum));
+                    drawerList.addAll(createFX(datum));
                     break;
                 case "kar23":
-                    drawerList.addAll(createKar23(datum));
-                    break;
                 case "kar24":
-                    drawerList.addAll(createKar24(datum));
+                    drawerList.addAll(createKar(datum));
                     break;
                 case "vas23":
-                    drawerList.addAll(createVas23(datum));
-                    break;
                 case "vas24":
-                    drawerList.addAll(createVas24(datum));
+                    drawerList.addAll(createVas(datum));
                     break;
                 case "f":
                     filler.add(createFiller(datum));
@@ -104,40 +92,17 @@ public class CalculateClosets {
             }
         });
 
-        int colorNum = getNumberOfColors(masterList);
-
-        int arrayY = 0;
-        String color = masterList.get(0).get(13);
-        int masterListY = 0;
-
-        unitColor.add(new ArrayList<ArrayList<String>>());
-        // Add different units to different axis
-        for (int arrayX = 0; arrayX < colorNum; arrayX++) {
-//            System.out.println("*************************** Color: " + color + " ***************************");
-            if (masterList.size() > arrayX+1) {
-                if (!Objects.equals(masterList.get(arrayX).get(1), masterList.get(arrayX + 1).get(1))) {
-                    arrayY = 0;
-                    unitColor.add(new ArrayList<ArrayList<String>>()); // runs as many times as the colorNum allows
-                }
-            }
-            while (Objects.equals(color, masterList.get(masterListY).get(13))) {
-                unitColor.get(arrayX).add(new ArrayList<>());
-                unitColor.get(arrayX).set(arrayY, masterList.get(masterListY));
-                if (masterListY < masterList.size()-1) {
-                    masterListY++;
-                    arrayY++;
-                } else {
-                    break;
-                }
-            }
-            color = masterList.get(masterListY).get(13);
+        if (!masterList.isEmpty()) {
+            unitColor = createMasterArray(masterList);
         }
 
-        // Sorts rods by width
-        sortReversed(7, rodsList);
+        if (!rodsList.isEmpty()) {
+            // Sorts rods by width
+            sortReversed(7, rodsList);
+        }
 
         // Calls ExcelOutput to create the Excel file
-        ExcelOutput.createExcel(unitColor, rodsList);
+        createExcel(unitColor, rodsList);
 
         System.out.println("\nList Run Successful");
     }

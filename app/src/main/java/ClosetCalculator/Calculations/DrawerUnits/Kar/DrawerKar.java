@@ -1,16 +1,16 @@
-package ClosetCalculator.Calculations.DrawerUnits.FX;
+package ClosetCalculator.Calculations.DrawerUnits.Kar;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import static ClosetCalculator.Calculations.AddToString.add;
 import static ClosetCalculator.Calculations.CheckNum.checkNumber;
-import static ClosetCalculator.Calculations.DrawerUnits.AddShelve.addShelves;
-import static ClosetCalculator.Calculations.DrawerUnits.FX.DrawerFXBox.*;
+import static ClosetCalculator.Calculations.DrawerUnits.Kar.DrawerKarBox.*;
 import static ClosetCalculator.Calculations.SubtractFromString.sub;
 
-public class DrawerFX23 {
-    public static ArrayList<ArrayList<String>> createFX23(Vector vector) {
+public class DrawerKar {
+    public static ArrayList<ArrayList<String>> createKar(Vector vector) {
 
         /**
          * Input
@@ -41,7 +41,7 @@ public class DrawerFX23 {
 //        String rod = drawers.get(5);
         String noShel = drawers.get(6);
         String client = drawers.get(7);
-//        String notes = drawers.get(8);
+        String notes = drawers.get(8);
         String color = drawers.get(9);
 //        String topOption = drawers.get(10);
 //        String botOption = drawers.get(11);
@@ -53,13 +53,13 @@ public class DrawerFX23 {
                 String.valueOf(partMultiplier),
                 depthDrawer, "D","x", widthDrawer, "W", "",
                 "", "", "Top",
-                type, client, color, color));
+                type, client, notes, color, color));
 
         ArrayList<String> bottom = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier), "", "", "",
                 sub(depthDrawer, "0.125"), "D","x", widthDrawer, "W",
                 "Bottom",
-                type, client, color, color));
+                type, client, notes, color, color));
 
         // Create upright arraylist
         ArrayList<String> upright = new ArrayList<>(List.of(
@@ -67,27 +67,37 @@ public class DrawerFX23 {
                 "", "", "",
                 depthDrawer, "D","x",
                 "37 1/2", "H","Upright/WH",
-                type, client, color, color));
+                type, client, notes, color, color));
 
-        // Math when weird number
-        String faceWidth = checkNumber(sub(widthDrawer, "0.5"));
+        String faceWidth = "";
+        if (type.equals("kar23")) {
+            // Math when weird number
+            faceWidth = checkNumber(sub(widthDrawer, "0.5"));
+        } else if (type.equals("kar24")) {
+            faceWidth = checkNumber(add(widthDrawer, "0.5"));
+        }
 
         //  ArrayList<ArrayList<String>> created to add for output
         ArrayList<ArrayList<String>> drawerUnit = new ArrayList<>();
 
         drawerUnit.add(top);
-        drawerUnit.addAll(calcFaceFX(partMultiplier, faceWidth, type, client, color));
+
+        drawerUnit.addAll(calcFaceKAR(partMultiplier, faceWidth, type, client, notes, color));
         /**
          *  Drawer boxes
          */
-        drawerUnit.addAll(calcBoxFX(partMultiplier, widthDrawer, type, client, color, depthDrawer));
+        drawerUnit.addAll(calcBoxKAR(partMultiplier, widthDrawer, type, client, notes, depthDrawer));
         drawerUnit.add(upright);
         drawerUnit.add(bottom);
-        drawerUnit.add(calcBottomFX(partMultiplier, depthDrawer, widthDrawer, type, client, color));
-
+        drawerUnit.add(calcBottomKAR(partMultiplier, depthDrawer, widthDrawer, type, client, notes));
 
         if (!noShel.isEmpty()) {
-            drawerUnit.add(addShelves(vector));
+            ArrayList<String> shelves = new ArrayList<>(List.of(
+                    String.valueOf(noShel),
+                    depthDrawer, "D", "x", widthDrawer, "W",
+                    "", "", "",
+                    "Shelves", type, client, "", color));
+            drawerUnit.add(shelves);
         }
 
         return drawerUnit;

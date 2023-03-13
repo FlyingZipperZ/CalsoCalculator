@@ -4,8 +4,6 @@ import org.apache.poi.ss.usermodel.DataFormat;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.xssf.usermodel.*;
 
-import static ClosetCalculator.Components.JtextField.colorTxt;
-
 public class ColorRow {
 
     // Gets color from colorTxt and puts it at the bottom of the file

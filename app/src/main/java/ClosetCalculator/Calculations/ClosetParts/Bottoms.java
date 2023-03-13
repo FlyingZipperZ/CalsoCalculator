@@ -17,7 +17,7 @@ public class Bottoms {
         String widthDrawer = checkNumber(bottoms.get(1));
 //        String heightDrawer = checkNumber(bottoms.get(2));
         String depthDrawer = checkNumber(bottoms.get(3));
-        String type = bottoms.get(4);
+//        String type = bottoms.get(4);
 //        String rod = drawers.get(5);
 //        String noShel = bottoms.get(6);
         String client = bottoms.get(7);
@@ -29,8 +29,8 @@ public class Bottoms {
         // Create top and bottom arraylist
         return new ArrayList<>(List.of(
                 numberParts,
+                "0", "", "",
                 sub(depthDrawer, "0.125"), "D","x", widthDrawer, "W", "",
-                "", "", "",
-                "base", client, notes, color));
+                "base", client, notes, color, color));
     }
 }
