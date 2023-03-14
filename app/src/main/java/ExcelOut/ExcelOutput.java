@@ -15,6 +15,7 @@ import static ClosetCalculator.SortFunctions.sortReversed2d;
 import static ExcelOut.ColorRow.createColorRow;
 import static ExcelOut.DimensionCells.setClosetRows;
 import static ExcelOut.DimensionCells.setRods;
+import static ExcelOut.Header.setFirstRow;
 
 public class ExcelOutput {
     /**
@@ -49,7 +50,7 @@ public class ExcelOutput {
 
         // Header only
         int rowNumber = 0;
-        Header.setFirstRow(workbook, sheet, rowNumber++);
+        setFirstRow(workbook, sheet, rowNumber++);
         rowNumber++;
 
         // pulls info from the 3d array and puts them in the list
@@ -69,6 +70,12 @@ public class ExcelOutput {
         for (ArrayList<String> rod : rods) {
             setRods(workbook, sheet, rowNumber++, rod);
         }
+
+        for (int i = 0; i < 13; i++) {
+            sheet.autoSizeColumn(i);
+        }
+
+        sheet.setPrintGridlines(true);
 
         String location = SaveFile.createSavePopUp();
 

@@ -19,7 +19,7 @@ public class Header {
 
         // Cell A
         cells[0] = rows.createCell(0);
-        cells[0].setCellValue("Number");
+        cells[0].setCellValue("Num");
 
         // Cell B
         cells[1] = rows.createCell(1);

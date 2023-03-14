@@ -17,12 +17,12 @@ public class MasterArray {
         unitColor.add(new ArrayList<ArrayList<String>>());
         // Add different units to different axis
         for (int arrayX = 0; arrayX < colorNum; arrayX++) {
-//            System.out.println("*************************** Color: " + color + " ***************************");
+            System.out.println("*************************** Color: " + color + " ***************************");
             if (masterList.size() > arrayX + 1) {
-                if (!Objects.equals(masterList.get(arrayX).get(1), masterList.get(arrayX + 1).get(1))) {
+//                if (!Objects.equals(masterList.get(arrayX).get(1), masterList.get(arrayX + 1).get(1))) {
                     arrayY = 0;
                     unitColor.add(new ArrayList<ArrayList<String>>()); // runs as many times as the colorNum allows
-                }
+//                }
             }
             while (Objects.equals(color, masterList.get(masterListY).get(13))) {
                 unitColor.get(arrayX).add(new ArrayList<>());

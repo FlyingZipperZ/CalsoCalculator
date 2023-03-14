@@ -14,59 +14,59 @@ public class Table {
      */
     public static JTable getJTable(DefaultTableModel dtm, String[] header) {
 
-        Object[] defaultData = {"3", "", "84", "15.875", "u", "",
-                "", "BDRM/1215 Serif", "", "White", false, true};
+        Object[] defaultData = {"4", "", "81.375", "15.875", "u", "",
+                "", "BDRM Left/Vera", "2067 mm, Angled", "White", false, true};
 
-        Object[] defaultData1 = {"1", "43.875","", "15.875", "b", "",
-                "", "BDRM/1215 Serif", "", "White", false, true};
+        Object[] defaultData1 = {"1", "80.875","", "15.875", "b", "",
+                "", "BDRM Left/Vera", "", "PB", false, true};
 
-        Object[] defaultData2 = {"1", "20", "", "15 7/8", "t", "",
-                "", "BDRM/1215 Serif", "", "White", false, true};
+        Object[] defaultData2 = {"1", "81 1/16", "", "12", "t", "",
+                "", "BDRM Left/Vera", "", "White", false, true};
 
-        Object[] defaultData3 = {"1", "27.875", "", "15 7/8", "t", "2",
-                "", "BDRM/1215 Serif", "Euro", "White", false, true};
+        Object[] defaultData3 = {"6", "24", "", "15 7/8", "s", "",
+                "", "BDRM Left/Vera", "Euro", "White", false, true};
 
-        Object[] defaultData4 = {"1", "21.875", "", "15 7/8", "s", "2",
-                "", "BDRM/1215 Serif", "fit F Right", "White", false, true};
+        Object[] defaultData4 = {"1", "20", "", "15 7/8", "s", "1",
+                "", "BDRM Left/Vera", "", "White", false, true};
 
-        Object[] defaultData5 = {"1", "19.25", "", "16", "kar23", "",
-                "", "BDRM/1215 Serif", "", "White", false, true};
+        Object[] defaultData5 = {"1", "34 1/16", "", "15 7/8", "s", "2",
+                "", "BDRM Left/Vera", "1 euro", "White", false, true};
 
-        Object[] defaultData6 = {"4","","84", "15.875", "u", "",
-                "", "Master/1215 Serif", "", "White", false, true};
+        Object[] defaultData6 = {"4", "", "81.375", "15.875", "u", "",
+                "", "BDRM Right/Vera", "", "White", false, true};
 
-        Object[] defaultData7 = {"1", "74.125", "", "15.875", "b", "",
-                "", "Master/1215 Serif", "", "White", false, true};
+        Object[] defaultData7 = {"1", "76.875", "", "15.875", "b", "",
+                "", "BDRM Right/Vera", "", "PB", false, true};
 
-        Object[] defaultData8 = {"1", "28.625", "", "15.875", "t", "",
-                "", "Master/1215 Serif", "Euro", "White", false, true};
+        Object[] defaultData8 = {"1", "77 1/16", "", "12", "t", "",
+                "", "BDRM Right/Vera", "Euro", "White", false, true};
 
-        Object[] defaultData9 = {"1", "18", "", "15 7/8", "t", "",
-                "", "Master/1215 Serif", "fit F Right", "White", false, true};
+        Object[] defaultData9 = {"6", "24", "", "15 7/8", "s", "",
+                "", "BDRM Right/Vera", "1 Euro", "White", false, true};
 
-        Object[] defaultData10 = {"1", "24.75", "", "15 7/8", "t", "",
-                "", "Master/1215 Serif", "Euro", "White", false, true};
+        Object[] defaultData10 = {"1", "18", "", "15 7/8", "s", "1",
+                "", "BDRM Right/Vera", "Euro", "White", false, true};
 
-        Object[] defaultData11 = {"1", "28.625", "", "15 7/8", "s", "2",
-                "", "Master/1215 Serif", "Euro", "White", false, true};
+        Object[] defaultData11 = {"1", "32 1/16", "", "15 7/8", "s", "2",
+                "", "BDRM Right/Vera", "Euro", "White", false, true};
 
-        Object[] defaultData12 = {"1", "18", "", "15 7/8", "s", "1",
-                "", "Master/1215 Serif", "Fit M Left", "White", false, true};
+        Object[] defaultData12 = {"4", "", "81.875", "15 7/8", "u", "",
+                "", "Master/Vera", "2067 mm, Angled", "White", false, true};
 
-        Object[] defaultData13 = {"1", "24", "", "16", "kar23", "",
-                "", "Master/1215 Serif", "", "White", false, true};
+        Object[] defaultData13 = {"1", "73.875", "", "15.875", "b", "",
+                "", "Master/Vera", "Edge 2 Sides", "PB", false, true};
 
-        Object[] defaultData14 = {"2", "", "84", "12", "u", "1",
-                "", "Laundry/1215 Serif", "", "White", false, true};
+        Object[] defaultData14 = {"1", "74", "", "12", "t", "",
+                "", "Master/Vera", "Edge 2 Sides Right", "White", false, true};
 
-        Object[] defaultData15 = {"1", "54 3/16", "", "12", "u", "",
-                "", "Laundry/1215 Serif", "", "White", false, true};
+        Object[] defaultData15 = {"6", "18", "", "15.875", "b", "",
+                "", "Master/Vera", "1 euro", "PB", false, true};
 
-        Object[] defaultData16 = {"2", "23", "", "12", "s", "1",
-                "", "Laundry/1215 Serif", "", "White", false, true};
+        Object[] defaultData16 = {"1", "24", "", "15.875", "s", "1",
+                "", "Master/Vera", "", "White", false, true};
 
-        Object[] defaultData17 = {"1", "29 11/16", "", "12", "t", "",
-                "", "Laundry/1215 Serif", "", "White", false, true};
+        Object[] defaultData17 = {"1", "29", "", "15.875", "s", "2",
+                "", "Master/Vera", "euro", "White", false, true};
 
         Object[] defaultData18 = {"1", "29 9/16", "", "2.5", "t", "",
                 "", "Laundry/1215 Serif", "", "White", false, true};
@@ -109,24 +109,24 @@ public class Table {
 
         dtm.setColumnIdentifiers(header);
 //        jTable.setModel(dtm);
-//        dtm.addRow(defaultData);
-//        dtm.addRow(defaultData1);
-//        dtm.addRow(defaultData2);
-//        dtm.addRow(defaultData3);
-//        dtm.addRow(defaultData4);
-//        dtm.addRow(defaultData5);
-//        dtm.addRow(defaultData6);
-//        dtm.addRow(defaultData7);
-//        dtm.addRow(defaultData8);
-//        dtm.addRow(defaultData9);
-//        dtm.addRow(defaultData10);
-//        dtm.addRow(defaultData11);
-//        dtm.addRow(defaultData12);
-//        dtm.addRow(defaultData13);
-//        dtm.addRow(defaultData14);
-//        dtm.addRow(defaultData15);
-//        dtm.addRow(defaultData16);
-//        dtm.addRow(defaultData17);
+        dtm.addRow(defaultData);
+        dtm.addRow(defaultData1);
+        dtm.addRow(defaultData2);
+        dtm.addRow(defaultData3);
+        dtm.addRow(defaultData4);
+        dtm.addRow(defaultData5);
+        dtm.addRow(defaultData6);
+        dtm.addRow(defaultData7);
+        dtm.addRow(defaultData8);
+        dtm.addRow(defaultData9);
+        dtm.addRow(defaultData10);
+        dtm.addRow(defaultData11);
+        dtm.addRow(defaultData12);
+        dtm.addRow(defaultData13);
+        dtm.addRow(defaultData14);
+        dtm.addRow(defaultData15);
+        dtm.addRow(defaultData16);
+        dtm.addRow(defaultData17);
 //        dtm.addRow(defaultData18);
 //        dtm.addRow(defaultData19);
 //        dtm.addRow(defaultData20);
