@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static ClosetCalculator.Calculations.CheckNum.checkNumber;
-import static ClosetCalculator.Calculations.SubtractFromString.sub;
-import static ClosetCalculator.Calculations.SubtractFromString.subHalfInch;
+import static ClosetCalculator.Calculations.SubtractFromString.*;
 import static ClosetCalculator.SortFunctions.sortReversed;
 
 public class DrawerFXBox {
@@ -107,7 +106,7 @@ public class DrawerFXBox {
                                                  String type, String client, String color) {
         return new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 5), "", "", "",
-                checkNumber(subHalfInch(depthDrawer)), "D", "x",
+                checkNumber(sub8thInch(depthDrawer)), "D", "x",
                 checkNumber(sub(widthDrawer, "2.5625")),
                 "W", "Drawer Bottom (1/4')",
                 type, client, "White", color));
