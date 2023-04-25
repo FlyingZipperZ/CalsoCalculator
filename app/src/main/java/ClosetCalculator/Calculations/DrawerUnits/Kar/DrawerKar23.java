@@ -51,8 +51,8 @@ public class DrawerKar23 {
         // Create top and bottom arraylist
         ArrayList<String> top = new ArrayList<>(List.of(
                 String.valueOf(partMultiplier),
-                depthDrawer, "D","x", widthDrawer, "W", "",
-                "", "", "Top",
+                depthDrawer, "D","x", widthDrawer, "W",
+                "", "", "", "Top",
                 type, client, notes));
 
         ArrayList<String> bottom = new ArrayList<>(List.of(

@@ -55,9 +55,17 @@ public class DS32Drawer {
                 "Drawer Sides",
                 type, client, notes, "White"));
 
+        ArrayList<String> bottom = new ArrayList<>(List.of(
+                String.valueOf(numberParts), "", "", "",
+                checkNumber(depthDrawer), "D", "x",
+                checkNumber(sub(widthDrawer, "2.5625")),
+                "W", "Drawer Bottom (1/4')",
+                type, client, notes, "White"));
+
         boxes.add(face);
         boxes.add(frontAndBack);
         boxes.add(sides);
+        boxes.add(bottom);
 
         return boxes;
     }

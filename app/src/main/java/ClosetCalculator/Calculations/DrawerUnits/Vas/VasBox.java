@@ -82,7 +82,7 @@ public class VasBox {
     public static ArrayList<String> calcBottomVas(int partMultiplier, String depthDrawer, String widthDrawer, String type, String client, String notes) {
         return new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 5), "", "", "",
-                checkNumber(sub8thInch(depthDrawer)), "D", "x",
+                checkNumber(depthDrawer), "D", "x",
                 checkNumber(sub(widthDrawer, "2.5625")),
                 "W", "Drawer Bottom (1/4')",
                 type, client, notes, "White"));
