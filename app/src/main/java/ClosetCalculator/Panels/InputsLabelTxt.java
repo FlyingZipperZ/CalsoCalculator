@@ -39,7 +39,7 @@ public class InputsLabelTxt {
         closetInputComponents(constraints, panel, room, roomTxt,0,gridy++);
         closetInputComponents(constraints, panel, color, colorTxt,0,gridy++);
         closetInputComponents(constraints, panel, rodColor, colorRodTxt,0,gridy++);
-        rodModTxt.setText("3/16");
+        rodModTxt.setText("1/4");
         closetInputComponents(constraints, panel, rodMod, rodModTxt,0,gridy++);
         closetInputComponents(constraints, panel, numPiece, numPiecesTxt,0,gridy++);
         closetInputComponents(constraints, panel, width, widthTxt,0,gridy++);

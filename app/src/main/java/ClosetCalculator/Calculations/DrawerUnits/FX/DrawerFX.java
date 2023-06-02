@@ -6,7 +6,7 @@ import java.util.Vector;
 
 import static ClosetCalculator.Calculations.AddToString.add;
 import static ClosetCalculator.Calculations.CheckNum.checkNumber;
-import static ClosetCalculator.Calculations.DrawerUnits.FX.DrawerFXBox.*;
+import static ClosetCalculator.Calculations.DrawerUnits.Boxes.*;
 import static ClosetCalculator.Calculations.SubtractFromString.sub;
 
 public class DrawerFX {
@@ -41,7 +41,7 @@ public class DrawerFX {
 //        String rod = drawers.get(5);
     String noShel = drawers.get(6);
     String client = drawers.get(7);
-//        String notes = drawers.get(8);
+    String notes = drawers.get(8);
     String color = drawers.get(9);
 //        String topOption = drawers.get(10);
 //        String botOption = drawers.get(11);
@@ -81,14 +81,14 @@ public class DrawerFX {
     ArrayList<ArrayList<String>> drawerUnit = new ArrayList<>();
 
     drawerUnit.add(top);
-    drawerUnit.addAll(calcFaceFX(partMultiplier, faceWidth, type, client, color));
+    drawerUnit.addAll(boxFaces(partMultiplier, faceWidth, type, client, notes,  color));
     /**
      *  Drawer boxes
      */
-    drawerUnit.addAll(calcBoxFX(partMultiplier, widthDrawer, type, client, color, depthDrawer));
+    drawerUnit.addAll(boxBoxes(partMultiplier, widthDrawer, type, client, color, notes, depthDrawer));
     drawerUnit.add(upright);
     drawerUnit.add(bottom);
-    drawerUnit.add(calcBottomFX(partMultiplier, depthDrawer, widthDrawer, type, client, color));
+    drawerUnit.add(boxBottoms(partMultiplier, depthDrawer, widthDrawer, type, client, color));
 
 
         if (!noShel.isEmpty()) {

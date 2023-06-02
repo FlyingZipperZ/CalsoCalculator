@@ -6,7 +6,7 @@ import java.util.Vector;
 
 import static ClosetCalculator.Calculations.AddToString.add;
 import static ClosetCalculator.Calculations.CheckNum.checkNumber;
-import static ClosetCalculator.Calculations.DrawerUnits.Kar.DrawerKarBox.*;
+import static ClosetCalculator.Calculations.DrawerUnits.Boxes.*;
 import static ClosetCalculator.Calculations.SubtractFromString.sub;
 
 public class DrawerKar {
@@ -82,14 +82,14 @@ public class DrawerKar {
 
         drawerUnit.add(top);
 
-        drawerUnit.addAll(calcFaceKAR(partMultiplier, faceWidth, type, client, notes, color));
+        drawerUnit.addAll(boxFaces(partMultiplier, faceWidth, type, client, notes, color));
         /**
          *  Drawer boxes
          */
-        drawerUnit.addAll(calcBoxKAR(partMultiplier, widthDrawer, type, client, notes, depthDrawer));
+        drawerUnit.addAll(boxBoxes(partMultiplier, widthDrawer, type, client, color, notes, depthDrawer));
         drawerUnit.add(upright);
         drawerUnit.add(bottom);
-        drawerUnit.add(calcBottomKAR(partMultiplier, depthDrawer, widthDrawer, type, client, notes));
+        drawerUnit.add(boxBottoms(partMultiplier, depthDrawer, widthDrawer, type, client, notes));
 
         if (!noShel.isEmpty()) {
             ArrayList<String> shelves = new ArrayList<>(List.of(
