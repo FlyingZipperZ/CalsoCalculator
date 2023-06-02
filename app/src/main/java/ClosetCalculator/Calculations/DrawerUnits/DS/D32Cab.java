@@ -58,7 +58,7 @@ public class D32Cab {
                     String.valueOf(noShel),
                     depthDrawer, "D", "x", widthDrawer, "W",
                     "", "", "",
-                    "Shelves", type, client, "", color));
+                    "Shelves", type, client, "", "White"));
             unit.add(shelves);
         }
 
