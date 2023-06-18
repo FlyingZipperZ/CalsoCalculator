@@ -57,7 +57,7 @@ public class DrawerFX {
 
     ArrayList<String> bottom = new ArrayList<>(List.of(
             String.valueOf(partMultiplier), "", "", "",
-            sub(depthDrawer, "0.125"), "D","x", widthDrawer, "W",
+            depthDrawer, "D","x", widthDrawer, "W",
             "Bottom",
             type, client, color, color));
 

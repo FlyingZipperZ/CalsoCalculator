@@ -134,13 +134,13 @@ public class Boxes {
                 ArrayList<String> frontAndBack123 = new ArrayList<>(List.of(
                         String.valueOf(partMultiplier * 6),
                         "6 1/4", "H", "x", boxWidth,
-                        "W", "", "", "", "Drawer Sides",
+                        "W", "", "", "", "",
                         type, client, notes, "White"));
 
                 ArrayList<String> frontAndBack45 = new ArrayList<>(List.of(
                         String.valueOf(partMultiplier * 4),
                         "7 1/2", "H", "x", boxWidth,
-                        "W", "", "", "", "Drawer Sides",
+                        "W", "", "", "", "Drawer F&B",
                         type, client, notes, "White"));
 
                 // Sides
@@ -149,13 +149,13 @@ public class Boxes {
                 ArrayList<String> sides123 = new ArrayList<>(List.of(
                         String.valueOf(partMultiplier * 6),
                         "6 1/4", "H", "x", boxDepth,
-                        "W", "", "", "", "Drawer F&B",
+                        "W", "", "", "", "Drawer Sides",
                         type, client, notes, "White"));
 
                 ArrayList<String> sides45 = new ArrayList<>(List.of(
                         String.valueOf(partMultiplier * 4),
                         "7 1/2", "H", "x", boxDepth,
-                        "W", "", "", "", "Drawer F&B",
+                        "W", "", "", "", "Drawer Sides",
                         type, client, notes, "White"));
 
                 box.add(frontAndBack123);
@@ -169,39 +169,40 @@ public class Boxes {
                 ArrayList<String> frontAndBack1 = new ArrayList<>(List.of(
                         String.valueOf(partMultiplier * 2),
                         "5", "H","x", boxWidth,
-                        "W", "", "", "", "Drawer Sides",
+                        "W", "", "", "", "Drawer F&B",
                         type, client, notes, "White"));
 
                 ArrayList<String> frontAndBack234 = new ArrayList<>(List.of(
                         String.valueOf(partMultiplier * 4),
                         "6 1/4", "H","x", boxWidth,
-                        "W", "", "", "", "Drawer Sides",
+                        "W", "", "", "", "Drawer F&B",
                         type, client, notes, "White"));
 
                 ArrayList<String> frontAndBack5 = new ArrayList<>(List.of(
                         String.valueOf(partMultiplier * 4),
                         "7 1/2", "H","x", boxWidth,
-                        "W", "", "", "", "Drawer Sides",
+                        "W", "", "", "", "Drawer F&B",
                         type, client, notes, "White"));
 
                 // Sides
-                String boxDepth = checkNumber(sub(depthDrawer, "0.125"));
+                String boxDepth = checkNumber(depthDrawer);
+
                 ArrayList<String> sides1 = new ArrayList<>(List.of(
                         String.valueOf(partMultiplier * 2),
                         "5", "H","x", boxDepth,
-                        "W", "", "", "", "Drawer F&B",
+                        "W", "", "", "", "Drawer Sides",
                         type, client, notes, "White"));
 
                 ArrayList<String> sides234 = new ArrayList<>(List.of(
                         String.valueOf(partMultiplier * 4),
                         "6 1/4", "H","x", boxDepth,
-                        "W", "", "", "", "Drawer F&B",
+                        "W", "", "", "", "Drawer Sides",
                         type, client, notes, "White"));
 
                 ArrayList<String> sides5 = new ArrayList<>(List.of(
                         String.valueOf(partMultiplier * 4),
                         "7 1/2", "H","x", boxDepth,
-                        "W", "", "", "", "Drawer F&B",
+                        "W", "", "", "", "Drawer Sides",
                         type, client, notes, "White"));
 
                 box.add(frontAndBack1);
@@ -218,39 +219,40 @@ public class Boxes {
                 ArrayList<String> frontAndBack1 = new ArrayList<>(List.of(
                         String.valueOf(partMultiplier * 2),
                         "5", "H", "x", boxWidth,
-                        "W", "", "", "", "Drawer Sides",
+                        "W", "", "", "", "Drawer F&B",
                         type, client, "White", color));
 
                 ArrayList<String> frontAndBack234 = new ArrayList<>(List.of(
                         String.valueOf(partMultiplier * 6),
                         "6 1/4", "H", "x", boxWidth,
-                        "W", "", "", "", "Drawer Sides",
+                        "W", "", "", "", "Drawer F&B",
                         type, client, "White", color));
 
                 ArrayList<String> frontAndBack5 = new ArrayList<>(List.of(
                         String.valueOf(partMultiplier * 2),
                         "7 1/2", "H", "x", boxWidth,
-                        "W", "", "", "", "Drawer Sides",
+                        "W", "", "", "", "Drawer F&B",
                         type, client, "White", color));
 
                 // Sides
-                String boxDepth = checkNumber(sub(depthDrawer, "0.125"));
+                String boxDepth = checkNumber(depthDrawer);
+
                 ArrayList<String> sides1 = new ArrayList<>(List.of(
                         String.valueOf(partMultiplier * 2),
                         "5", "H", "x", boxDepth,
-                        "W", "", "", "", "Drawer F&B",
+                        "W", "", "", "", "Drawer Sides",
                         type, client, "White", color));
 
                 ArrayList<String> sides234 = new ArrayList<>(List.of(
                         String.valueOf(partMultiplier * 6),
                         "6 1/4", "H", "x", boxDepth,
-                        "W", "", "", "", "Drawer F&B",
+                        "W", "", "", "", "Drawer Sides",
                         type, client, "White", color));
 
                 ArrayList<String> sides5 = new ArrayList<>(List.of(
                         String.valueOf(partMultiplier * 2),
                         "7 1/2", "H", "x", boxDepth,
-                        "W", "", "", "", "Drawer F&B",
+                        "W", "", "", "", "Drawer Sides",
                         type, client, "White", color));
 
                 box.add(frontAndBack1);
@@ -268,9 +270,33 @@ public class Boxes {
     }
 
     public static ArrayList<String> boxBottoms(int partMultiplier, String depthDrawer, String widthDrawer, String type, String client, String notes) {
+        double depth = convertFractionToDecimal(depthDrawer);
+
+        if (depth >= 11.75 && depth <= 13.625) {
+            depthDrawer = String.valueOf(11.75);
+        }
+        if (depth >= 13.75 && depth <= 15.625) {
+            depthDrawer = String.valueOf(13.75);
+        }
+        if (depth >= 15.75 && depth <= 17.625) {
+            depthDrawer = String.valueOf(15.75);
+        }
+        if (depth >= 17.75 && depth <= 19.625) {
+            depthDrawer = String.valueOf(17.75);
+        }
+        if (depth >= 19.75 && depth <= 21.625) {
+            depthDrawer = String.valueOf(19.75);
+        }
+        if (depth >= 21.75 && depth <= 23.625) {
+            depthDrawer = String.valueOf(21.75);
+        }
+        if (depth >= 23.75 && depth <= 25.625) {
+            depthDrawer = String.valueOf(23.75);
+        }
+
         return new ArrayList<>(List.of(
                 String.valueOf(partMultiplier * 5), "", "", "",
-                checkNumber(sub8thInch(depthDrawer)), "D", "x",
+                checkNumber(depthDrawer), "D", "x",
                 checkNumber(sub(widthDrawer, "2.5625")),
                 "W", "Drawer Bottom (1/4')",
                 type, client, notes, "White"));
