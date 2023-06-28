@@ -32,8 +32,6 @@ public class InputsLabelTxt {
         constraints.insets = new Insets(5, 0, 5, 0);
         constraints.anchor = GridBagConstraints.WEST;
 
-
-
         // add components to the panel
         closetInputComponents(constraints, panel, client, clientTxt,0,gridy++);
         closetInputComponents(constraints, panel, room, roomTxt,0,gridy++);

@@ -83,76 +83,96 @@ public class ClosetGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String type = typeTxt.getText().trim().toLowerCase();
-                if (numPiecesTxt.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Number of pieces is empty");
-                } else if (typeTxt.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "No Type detected");
-                } else if (Objects.equals(type, "u")) {
-                    if (heightTxt.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Height is empty");
-                    } else if (depthTxt.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Depth is empty");
-                    } else {
-                        InputsLabelTxt.addToTable(jTable, dtm);
+                boolean slashCheck = false;
+                if (widthTxt.getText().contains(" ") ) {
+                    if (!widthTxt.getText().contains("/")) {
+                        JOptionPane.showMessageDialog(null, "Missing Width Slash");
+                        slashCheck = true;
+                    }
+                } else if (heightTxt.getText().contains(" ")) {
+                    if (!heightTxt.getText().contains("/")) {
+                        JOptionPane.showMessageDialog(null, "Missing Height Slash");
+                        slashCheck = true;
+                    }
+                } else if (depthTxt.getText().contains(" ")) {
+                    System.out.println("Running?");
+                    if (!depthTxt.getText().contains("/")) {
+                        JOptionPane.showMessageDialog(null, "Missing Depth Slash");
+                        slashCheck = true;
                     }
                 }
-                // Shelves
-                else if (Objects.equals(type, "s") || Objects.equals(type, "t")) {
-                    if (widthTxt.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Width is empty");
-                    } else if (depthTxt.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Depth is empty");
-                    } else {
+                if (!slashCheck) {
+                    if (numPiecesTxt.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Number of pieces is empty");
+                    } else if (typeTxt.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "No Type detected");
+                    } else if (Objects.equals(type, "u")) {
+                        if (heightTxt.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Height is empty");
+                        } else if (depthTxt.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Depth is empty");
+                        } else {
+                            InputsLabelTxt.addToTable(jTable, dtm);
+                        }
+                    }
+                    // Shelves
+                    else if (Objects.equals(type, "s") || Objects.equals(type, "t")) {
+                        if (widthTxt.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Width is empty");
+                        } else if (depthTxt.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Depth is empty");
+                        } else {
 
-                        InputsLabelTxt.addToTable(jTable, dtm);
-                    }
-                } else if (Objects.equals(type, "ds32") || Objects.equals(type, "d32")) {
-                    if (widthTxt.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Width is empty");
-                    } else if (heightTxt.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Height is empty");
-                    }else if (depthTxt.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Depth is empty");
+                            InputsLabelTxt.addToTable(jTable, dtm);
+                        }
+                    } else if (Objects.equals(type, "ds32") || Objects.equals(type, "d32")) {
+                        if (widthTxt.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Width is empty");
+                        } else if (heightTxt.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Height is empty");
+                        } else if (depthTxt.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Depth is empty");
+                        } else {
+                            InputsLabelTxt.addToTable(jTable, dtm);
+                        }
+                    } else if (Objects.equals(type, "fx23") ||
+                            Objects.equals(type, "fx24") ||
+                            Objects.equals(type, "kar23") ||
+                            Objects.equals(type, "kar24") ||
+                            Objects.equals(type, "vas23") ||
+                            Objects.equals(type, "vas24")) {
+                        if (widthTxt.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Width is empty");
+                        } else if (depthTxt.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Depth is empty");
+                        } else {
+                            InputsLabelTxt.addToTable(jTable, dtm);
+                        }
+                    } else if (Objects.equals(type, "f")) {
+                        if (heightTxt.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Height is empty");
+                        } else if (widthTxt.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Width is empty");
+                        } else {
+                            InputsLabelTxt.addToTable(jTable, dtm);
+                        }
+                    } else if (Objects.equals(type, "r")) {
+                        if (widthTxt.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Width is empty");
+                        } else {
+                            InputsLabelTxt.addToTable(jTable, dtm);
+                        }
+                    } else if (Objects.equals(type, "b")) {
+                        if (depthTxt.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Depth is empty");
+                        } else if (widthTxt.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Width is empty");
+                        } else {
+                            InputsLabelTxt.addToTable(jTable, dtm);
+                        }
                     } else {
-                        InputsLabelTxt.addToTable(jTable, dtm);
-                    }
-                } else if (Objects.equals(type, "fx23") ||
-                        Objects.equals(type, "fx24") ||
-                        Objects.equals(type, "kar23") ||
-                        Objects.equals(type, "kar24") ||
-                        Objects.equals(type, "vas23") ||
-                        Objects.equals(type, "vas24")) {
-                    if (widthTxt.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Width is empty");
-                    } else if (depthTxt.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Depth is empty");
-                    } else {
-                        InputsLabelTxt.addToTable(jTable, dtm);
-                    }
-                } else if (Objects.equals(type, "f")) {
-                    if (heightTxt.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Height is empty");
-                    } else if (widthTxt.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Width is empty");
-                    } else {
-                        InputsLabelTxt.addToTable(jTable, dtm);
-                    }
-                } else if (Objects.equals(type, "r")) {
-                    if (widthTxt.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Width is empty");
-                    } else {
-                        InputsLabelTxt.addToTable(jTable, dtm);
-                    }
-                } else if (Objects.equals(type, "b")) {
-                    if (depthTxt.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Depth is empty");
-                    } else if (widthTxt.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Width is empty");
-                    } else {
-                        InputsLabelTxt.addToTable(jTable, dtm);
-                    }
-                } else {
                         JOptionPane.showMessageDialog(null, "Invalid Type");
+                    }
                 }
             }
         });
